@@ -283,6 +283,7 @@ Na minha função`,
   ],
 
   links: [
+    { label: "Opcoda", href: "opcoda.html", icon: "link", meta: "sintetizador granular" },
     { label: "Bandcamp", href: "https://bloodwormtrax.bandcamp.com", icon: "bandcamp", meta: "catálogo e compra" },
     { label: "Instagram", href: "https://instagram.com/bloodwormtrax", icon: "instagram", meta: "@bloodwormtrax" },
     { label: "SoundCloud", href: "https://soundcloud.com/bloodwormtrax", icon: "soundcloud", meta: "streams e mixes" },
