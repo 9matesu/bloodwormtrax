@@ -1,5 +1,5 @@
-/* bloodworm trax — acervo
-   Colunas, busca, índice, ajustes e fichas. */
+/* bloodworm trax — catalog
+   Columns, search, index, settings and release entries. */
 
 (function () {
   'use strict';
@@ -45,11 +45,15 @@
     return String(n).padStart(2, '0');
   }
 
+  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
   function fmtDate(iso) {
     if (!iso) return '';
     var parts = String(iso).split('-');
     if (parts.length !== 3) return iso;
-    return parts[2] + '.' + parts[1] + '.' + parts[0];
+    var day = Number(parts[2]);
+    var month = MONTHS[Number(parts[1]) - 1] || parts[1];
+    return (day < 10 ? '0' + day : day) + ' ' + month + ' ' + parts[0];
   }
 
   function plural(n, one, many) {
@@ -57,7 +61,7 @@
   }
 
   /* ---------------------------------------------------------
-     árvore
+     tree
      --------------------------------------------------------- */
 
   var trackTotal = BTX.releases.reduce(function (sum, r) { return sum + r.tracks.length; }, 0);
@@ -90,7 +94,7 @@
           key: String(year),
           type: 'year',
           title: String(year),
-          meta: plural(rels.length, 'lançamento', 'lançamentos'),
+          meta: plural(rels.length, 'release', 'releases'),
           date: year + '-01-01',
           year: year,
           children: rels.map(releaseNode)
@@ -152,34 +156,34 @@
 
   var ROOTS = [
     {
-      key: 'catalogo',
+      key: 'catalog',
       type: 'branch',
-      title: 'catálogo',
-      meta: plural(BTX.releases.length, 'lançamento', 'lançamentos') + ' · ' + trackTotal + ' faixas',
+      title: 'catalog',
+      meta: plural(BTX.releases.length, 'release', 'releases') + ' · ' + trackTotal + ' tracks',
       date: latestDate,
       children: years
     },
     {
-      key: 'artistas',
+      key: 'artists',
       type: 'branch',
-      title: 'artistas',
-      meta: plural(BTX.artists.length, 'artista', 'artistas'),
+      title: 'artists',
+      meta: plural(BTX.artists.length, 'artist', 'artists'),
       date: '',
       children: artistNodes
     },
     {
-      key: 'selo',
+      key: 'label',
       type: 'branch',
-      title: 'selo',
-      meta: 'sobre · ficha · contato',
+      title: 'label',
+      meta: 'about · profile · contact',
       date: '',
       children: pageNodes
     },
     {
-      key: 'arquivo',
+      key: 'archive',
       type: 'branch',
-      title: 'arquivo',
-      meta: 'rádio · mensagens · pacote',
+      title: 'archive',
+      meta: 'radio · messages · package',
       date: '',
       children: archiveNodes
     },
@@ -222,16 +226,16 @@
   }
 
   function nodeMatchesFilter(node) {
-    if (state.filter === 'tudo') return true;
-    if (state.filter === 'lancamentos') return node.type === 'release';
-    if (state.filter === 'artistas') return node.type === 'artist';
-    if (state.filter === 'paginas') return node.type === 'page' || node.type === 'archive';
+    if (state.filter === 'all') return true;
+    if (state.filter === 'releases') return node.type === 'release';
+    if (state.filter === 'artists') return node.type === 'artist';
+    if (state.filter === 'pages') return node.type === 'page' || node.type === 'archive';
     if (state.filter === 'links') return node.type === 'link';
     return true;
   }
 
   function visibleNodes(list) {
-    if (state.filter === 'tudo') return list.slice();
+    if (state.filter === 'all') return list.slice();
     return list.filter(function (node) {
       if (node.type === 'branch' || node.type === 'year') {
         return visibleNodes(node.children || []).length > 0;
@@ -242,9 +246,9 @@
 
   function sortedNodes(list) {
     var arr = visibleNodes(list);
-    if (state.sort === 'a-z') {
-      arr.sort(function (a, b) { return a.title.localeCompare(b.title, 'pt-BR'); });
-    } else if (state.sort === 'recentes') {
+    if (state.sort === 'az') {
+      arr.sort(function (a, b) { return a.title.localeCompare(b.title, 'en'); });
+    } else if (state.sort === 'recent') {
       arr.sort(function (a, b) { return String(b.date || '').localeCompare(String(a.date || '')); });
     }
     return arr;
@@ -278,20 +282,20 @@
   }
 
   /* ---------------------------------------------------------
-     estado
+     state
      --------------------------------------------------------- */
 
   var saved = store.get('btx.settings', null) || {};
   var state = {
-    mode: saved.mode || (narrow ? 'indice' : 'mapa'),
+    mode: saved.mode || (narrow ? 'index' : 'map'),
     path: [],
     search: '',
-    filter: 'tudo',
+    filter: 'all',
     sort: 'natural',
     overlay: null
   };
 
-  var THEMES = { mono: true, claro: true, vinho: true };
+  var THEMES = { mono: true, light: true, wine: true };
   var LEGACY_THEMES = { agar: 'claro', noturno: 'mono', sangue: 'vinho' };
   var savedTheme = LEGACY_THEMES[saved.theme] || saved.theme;
 
@@ -302,7 +306,7 @@
   };
 
   /* ---------------------------------------------------------
-     ícones
+     icons
      --------------------------------------------------------- */
 
   function icon(name) {
@@ -320,7 +324,7 @@
   }
 
   /* ---------------------------------------------------------
-     render — colunas
+     render — columns
      --------------------------------------------------------- */
 
   var stageEl = $('#stage');
@@ -358,14 +362,14 @@
 
   function columnHTML(list, parent, level) {
     var nodes = sortedNodes(list);
-    var title = parent ? parent.title : 'acervo';
-    var meta = parent ? (parent.meta || '') : (BTX.releases.length + ' lançamentos · ' + trackTotal + ' faixas');
+    var title = parent ? parent.title : 'catalog';
+    var meta = parent ? (parent.meta || '') : (BTX.releases.length + ' releases · ' + trackTotal + ' tracks');
     var items = nodes.length
       ? nodes.map(function (node, idx) {
           var path = state.path.slice(0, level).concat(node.key);
           return nodeHTML(node, path, idx, level);
         }).join('')
-      : '<p class="node-empty">nenhum item com esse filtro.</p>';
+      : '<p class="node-empty">no items for this filter.</p>';
 
     return '<section class="col" data-level="' + level + '" aria-label="' + esc(title) + '">' +
       '<header class="col-head">' +
@@ -374,7 +378,7 @@
           '<span class="col-title">' + esc(title) + '</span>' +
         '</div>' +
         (level > 0
-          ? '<button type="button" class="col-pop" data-pop aria-label="voltar um nível">←</button>'
+          ? '<button type="button" class="col-pop" data-pop aria-label="back one level">←</button>'
           : '<span class="col-meta">' + esc(meta) + '</span>') +
       '</header>' +
       '<div class="col-body">' + items + '</div>' +
@@ -382,13 +386,13 @@
   }
 
   function detailColumnHTML(node, level) {
-    return '<section class="col detail-col" data-level="' + level + '" aria-label="ficha de ' + esc(node.title) + '">' +
+    return '<section class="col detail-col" data-level="' + level + '" aria-label="details for ' + esc(node.title) + '">' +
       '<header class="col-head">' +
         '<div class="col-head-left">' +
           '<span class="col-num">' + level + '</span>' +
-          '<span class="col-title">ficha</span>' +
+          '<span class="col-title">details</span>' +
         '</div>' +
-        '<button type="button" class="col-pop" data-pop aria-label="voltar um nível">←</button>' +
+        '<button type="button" class="col-pop" data-pop aria-label="back one level">←</button>' +
       '</header>' +
       '<div class="detail">' + renderDetail(node) + '</div>' +
     '</section>';
@@ -423,7 +427,7 @@
   }
 
   /* ---------------------------------------------------------
-     render — fichas
+     render — entries
      --------------------------------------------------------- */
 
   function paragraphs(text) {
@@ -456,10 +460,10 @@
 
   function releaseDetail(r) {
     var rows = [
-      { label: 'catálogo', value: r.cat },
-      { label: 'tipo', value: r.type + ' · ' + r.format },
-      { label: 'lançamento', value: fmtDate(r.date) },
-      { label: 'artistas', value: r.artist }
+      { label: 'catalogue', value: r.cat },
+      { label: 'type', value: r.type + ' · ' + r.format },
+      { label: 'release', value: fmtDate(r.date) },
+      { label: 'artists', value: r.artist }
     ].concat(r.credits || []);
 
     var tracks = r.tracks.map(function (t) {
@@ -472,7 +476,7 @@
 
     return '<article class="detail-release">' +
       '<div class="detail-grid">' +
-        coverHTML(r.cover, 'capa de ' + r.title) +
+        coverHTML(r.cover, 'cover for ' + r.title) +
         '<div class="detail-meta">' +
           '<p class="kicker">' + esc(r.cat) + ' · ' + esc(r.type) + ' · ' + r.year + '</p>' +
           '<h3 class="detail-title">' + esc(r.title) + '</h3>' +
@@ -480,7 +484,7 @@
           '<p class="detail-date">' + fmtDate(r.date) + '</p>' +
           '<div class="detail-actions">' +
             '<a class="btn-soft sm" href="' + esc(r.bandcamp) + '" target="_blank" rel="noopener">bandcamp ' + icon('link') + '</a>' +
-            '<button type="button" class="btn-text sm" data-copy>copiar link</button>' +
+            '<button type="button" class="btn-text sm" data-copy>copy link</button>' +
           '</div>' +
         '</div>' +
       '</div>' +
@@ -488,16 +492,16 @@
       (r.note ? '<p class="detail-note">' + esc(r.note) + '</p>' : '') +
       '<div class="embed-slot">' +
         '<button type="button" class="embed-load" data-embed="' + esc(r.embed) + '">' +
-          icon('play') + 'carregar player do bandcamp' +
+          icon('play') + 'load Bandcamp player' +
         '</button>' +
       '</div>' +
       specHTML(rows) +
       '<section class="tracks">' +
-        '<h4>faixas <span>' + r.tracks.length + '</span></h4>' +
+        '<h4>tracks <span>' + r.tracks.length + '</span></h4>' +
         '<ol class="tracklist">' + tracks + '</ol>' +
       '</section>' +
       (r.lyrics
-        ? '<details class="lyrics"><summary>letra</summary><pre>' + esc(r.lyrics) + '</pre></details>'
+        ? '<details class="lyrics"><summary>lyrics</summary><pre>' + esc(r.lyrics) + '</pre></details>'
         : '') +
       linksHTML(r.links) +
       '<p class="detail-foot">' + esc(r.cat) + ' · bloodworm trax · ' + r.year + '</p>' +
@@ -511,25 +515,25 @@
 
     var relatedHTML = related.length
       ? '<div class="related">' + related.map(function (r) {
-          return '<button type="button" data-path="catalogo/' + r.year + '/' + r.id + '">' +
+          return '<button type="button" data-path="catalog/' + r.year + '/' + r.id + '">' +
             esc(r.cat) + ' ' + esc(r.title) + '</button>';
         }).join('') + '</div>'
       : '';
 
     return '<article class="detail-person">' +
-      '<p class="kicker">artista</p>' +
+      '<p class="kicker">artist</p>' +
       '<h3 class="detail-title">' + esc(a.name) + '</h3>' +
       '<p class="detail-artist">' + esc(a.meta) + '</p>' +
       '<div class="detail-body">' + paragraphs(a.body) + '</div>' +
-      (related.length ? '<section class="tracks"><h4>no catálogo <span>' + related.length + '</span></h4>' + relatedHTML + '</section>' : '') +
+      (related.length ? '<section class="tracks"><h4>in the catalogue <span>' + related.length + '</span></h4>' + relatedHTML + '</section>' : '') +
       linksHTML(a.links) +
-      '<p class="detail-foot">bloodworm trax · ficha de artista</p>' +
+      '<p class="detail-foot">bloodworm trax · artist profile</p>' +
     '</article>';
   }
 
   function pageDetail(p) {
     return '<article class="detail-page">' +
-      '<p class="kicker">' + esc(p.meta || 'selo') + '</p>' +
+      '<p class="kicker">' + esc(p.meta || 'label') + '</p>' +
       '<h3 class="detail-title">' + esc(p.title) + '</h3>' +
       (p.body ? '<div class="detail-body">' + paragraphs(p.body) + '</div>' : '') +
       specHTML(p.spec) +
@@ -548,7 +552,7 @@
       '</div>';
     } else if (a.guestbook) {
       extra = '<button type="button" class="embed-load guestbook-load" data-guestbook="' + esc(a.src) + '">' +
-        'abrir livro de visitas' +
+        'open guestbook' +
       '</button>';
     } else if (a.cover) {
       extra = '<figure class="detail-cover narrow">' +
@@ -557,12 +561,12 @@
     }
 
     return '<article class="detail-archive">' +
-      '<p class="kicker">arquivo</p>' +
+      '<p class="kicker">archive</p>' +
       '<h3 class="detail-title">' + esc(a.title) + '</h3>' +
       '<p class="detail-artist">' + esc(a.meta) + '</p>' +
       body + extra +
       linksHTML(a.links) +
-      '<p class="detail-foot">bloodworm trax · arquivo</p>' +
+      '<p class="detail-foot">bloodworm trax · archive</p>' +
     '</article>';
   }
 
@@ -576,19 +580,19 @@
   }
 
   /* ---------------------------------------------------------
-     render — índice
+     render — index
      --------------------------------------------------------- */
 
   function releaseCard(r) {
-    var path = 'catalogo/' + r.year + '/' + r.id;
+    var path = 'catalog/' + r.year + '/' + r.id;
     return '<article class="rel-card">' +
       '<a class="rel-cover" href="#/' + path + '" data-path="' + path + '">' +
-        '<img src="' + esc(r.cover) + '" alt="capa de ' + esc(r.title) + '" loading="lazy">' +
+        '<img src="' + esc(r.cover) + '" alt="cover for ' + esc(r.title) + '" loading="lazy">' +
       '</a>' +
       '<div class="rel-info">' +
         '<h3 class="rel-title"><a href="#/' + path + '" data-path="' + path + '">' + esc(r.title) + '</a></h3>' +
         '<p class="rel-artist">' + esc(r.artist) + '</p>' +
-        '<p class="rel-meta">' + esc(r.cat) + ' · ' + plural(r.tracks.length, 'faixa', 'faixas') + ' · ' + fmtDate(r.date) + '</p>' +
+        '<p class="rel-meta">' + esc(r.cat) + ' · ' + plural(r.tracks.length, 'track', 'tracks') + ' · ' + fmtDate(r.date) + '</p>' +
       '</div>' +
     '</article>';
   }
@@ -616,13 +620,13 @@
 
   function sortData(list) {
     var arr = list.slice();
-    if (state.sort === 'a-z') {
+    if (state.sort === 'az') {
       arr.sort(function (a, b) {
         var an = a.title || a.name || a.label || '';
         var bn = b.title || b.name || b.label || '';
-        return an.localeCompare(bn, 'pt-BR');
+        return an.localeCompare(bn, 'en');
       });
-    } else if (state.sort === 'recentes') {
+    } else if (state.sort === 'recent') {
       arr.sort(function (a, b) {
         return String(b.date || b.year || '').localeCompare(String(a.date || a.year || ''));
       });
@@ -632,36 +636,36 @@
 
   function renderIndex() {
     var html = '';
-    var show = function (key) { return state.filter === 'tudo' || state.filter === key; };
+    var show = function (key) { return state.filter === 'all' || state.filter === key; };
 
-    if (show('lancamentos')) {
+    if (show('releases')) {
       var rels = sortData(BTX.releases);
-      html += '<section class="index-block" id="bloco-lancamentos">' +
-        '<header class="block-head"><h2>lançamentos</h2><span>' + rels.length + ' lançamentos</span></header>' +
+      html += '<section class="index-block" id="block-releases">' +
+        '<header class="block-head"><h2>releases</h2><span>' + rels.length + ' releases</span></header>' +
         '<div class="index-grid">' + rels.map(releaseCard).join('') + '</div>' +
       '</section>';
     }
 
-    if (show('artistas')) {
+    if (show('artists')) {
       var artists = sortData(BTX.artists);
-      html += '<section class="index-block" id="bloco-artistas">' +
-        '<header class="block-head"><h2>artistas</h2><span>' + artists.length + ' artistas</span></header>' +
+      html += '<section class="index-block" id="block-artists">' +
+        '<header class="block-head"><h2>artists</h2><span>' + artists.length + ' artists</span></header>' +
         '<div class="row-grid">' + artists.map(function (a) {
           return rowItem({
             title: a.name,
             meta: a.meta,
-            path: 'artistas/' + a.id
+            path: 'artists/' + a.id
           });
         }).join('') + '</div>' +
       '</section>';
     }
 
-    if (show('paginas')) {
+    if (show('pages')) {
       var pages = sortData(BTX.pages.concat(BTX.archive));
-      html += '<section class="index-block" id="bloco-paginas">' +
-        '<header class="block-head"><h2>selo &amp; arquivo</h2><span>' + pages.length + ' páginas</span></header>' +
+      html += '<section class="index-block" id="block-pages">' +
+        '<header class="block-head"><h2>label &amp; archive</h2><span>' + pages.length + ' pages</span></header>' +
         '<div class="row-grid">' + pages.map(function (p) {
-          var base = BTX.pages.indexOf(p) > -1 ? 'selo' : 'arquivo';
+          var base = BTX.pages.indexOf(p) > -1 ? 'label' : 'archive';
           return rowItem({
             title: p.title,
             meta: p.meta,
@@ -672,7 +676,7 @@
     }
 
     if (show('links')) {
-      html += '<section class="index-block" id="bloco-links">' +
+      html += '<section class="index-block" id="block-links">' +
         '<header class="block-head"><h2>links</h2><span>' + BTX.links.length + ' links</span></header>' +
         '<div class="row-grid">' + BTX.links.map(function (l) {
           return rowItem({
@@ -686,14 +690,14 @@
     }
 
     if (!html) {
-      html = '<p class="search-empty">nenhum item com esse filtro.</p>';
+      html = '<p class="search-empty">no items for this filter.</p>';
     }
 
     indexEl.innerHTML = html;
   }
 
   /* ---------------------------------------------------------
-     render — busca
+     render — search
      --------------------------------------------------------- */
 
   function renderSearch() {
@@ -713,7 +717,7 @@
 
     var groups = {};
     matches.forEach(function (m) {
-      var root = m.path[0] || 'acervo';
+      var root = m.path[0] || 'catalog';
       if (!groups[root]) groups[root] = [];
       groups[root].push(m);
     });
@@ -742,15 +746,15 @@
 
     searchEl.innerHTML = '<div class="search-panel">' +
         '<div class="search-head">' +
-          '<h2>busca</h2>' +
-          '<p>' + (matches.length ? plural(matches.length, 'resultado', 'resultados') : 'nenhum resultado') + ' para “' + esc(query) + '”</p>' +
+          '<h2>search</h2>' +
+          '<p>' + (matches.length ? plural(matches.length, 'result', 'results') : 'no results') + ' for “' + esc(query) + '”</p>' +
         '</div>' +
-        (body || '<p class="search-empty">nenhum item do acervo corresponde à busca.</p>') +
+        (body || '<p class="search-empty">No catalog item matches this search.</p>') +
       '</div>';
   }
 
   /* ---------------------------------------------------------
-     render geral
+     general render
      --------------------------------------------------------- */
 
   function currentOverlayOpen() {
@@ -784,15 +788,15 @@
     var searching = state.search.trim().length >= 2;
 
     document.body.dataset.mode = state.mode;
-    heroEl.classList.toggle('is-section', state.mode === 'mapa' && !searching && state.path.length > 0);
-    heroEl.hidden = searching || state.mode === 'indice';
-    stageWrapEl.hidden = searching || state.mode === 'indice' || (state.mode === 'mapa' && state.path.length === 0);
-    indexEl.hidden = searching || state.mode !== 'indice';
+    heroEl.classList.toggle('is-section', state.mode === 'map' && !searching && state.path.length > 0);
+    heroEl.hidden = searching || state.mode === 'index';
+    stageWrapEl.hidden = searching || state.mode === 'index' || (state.mode === 'map' && state.path.length === 0);
+    indexEl.hidden = searching || state.mode !== 'index';
     searchEl.hidden = !searching;
 
     if (searching) {
       renderSearch();
-    } else if (state.mode === 'indice') {
+    } else if (state.mode === 'index') {
       renderIndex();
     } else if (state.path.length) {
       renderStage();
@@ -809,9 +813,9 @@
     });
 
     var node = resolveNode(state.path);
-    document.title = state.mode === 'indice'
-      ? 'índice — bloodworm trax'
-      : (node ? node.title + ' — bloodworm trax' : 'acervo — bloodworm trax');
+    document.title = state.mode === 'index'
+      ? 'index — bloodworm trax'
+      : (node ? node.title + ' — bloodworm trax' : 'catalog — bloodworm trax');
 
     document.dispatchEvent(new CustomEvent('btx:path', { detail: { path: state.path } }));
 
@@ -821,12 +825,12 @@
   }
 
   /* ---------------------------------------------------------
-     navegação / hash
+     navigation / hash
      --------------------------------------------------------- */
 
   function setHash(path, mode) {
     var hash;
-    if (mode === 'indice') hash = '#/indice';
+    if (mode === 'index') hash = '#/index';
     else hash = path.length ? '#/' + path.join('/') : '#/';
     history.pushState(null, '', hash);
   }
@@ -877,15 +881,15 @@
   }
 
   var BLOCKS = {
-    catalogo: 'lancamentos',
-    artistas: 'artistas',
-    selo: 'paginas',
-    arquivo: 'paginas',
+    catalog: 'releases',
+    artists: 'artists',
+    label: 'pages',
+    archive: 'pages',
     links: 'links'
   };
 
   function scrollToBlock(key) {
-    var el = document.getElementById('bloco-' + (BLOCKS[key] || ''));
+    var el = document.getElementById('block-' + (BLOCKS[key] || ''));
     if (!el) return;
     var topbar = document.querySelector('.topbar');
     var offset = (topbar ? topbar.offsetHeight : 58) + 14;
@@ -894,16 +898,16 @@
   }
 
   function setMode(mode) {
-    if (mode !== 'mapa' && mode !== 'indice') return;
+    if (mode !== 'map' && mode !== 'index') return;
     state.mode = mode;
     settings.mode = mode;
     persist();
     closeOverlay();
-    if (mode === 'indice') {
+    if (mode === 'index') {
       state.path = [];
-      setHash([], 'indice');
+      setHash([], 'index');
     } else {
-      setHash(state.path, 'mapa');
+      setHash(state.path, 'map');
     }
     syncSettings();
     render();
@@ -920,16 +924,16 @@
       raw = location.hash.replace(/^#\/?/, '');
     }
 
-    if (raw === 'indice') {
-      state.mode = 'indice';
+    if (raw === 'index') {
+      state.mode = 'index';
       state.path = [];
       closeOverlay();
       render();
       return;
     }
 
-    if (raw === 'mapa') {
-      state.mode = 'mapa';
+    if (raw === 'map') {
+      state.mode = 'map';
       state.path = [];
       closeOverlay();
       render();
@@ -955,7 +959,7 @@
 
     state.path = parts;
 
-    if (state.mode === 'indice' && isLeaf(node)) {
+    if (state.mode === 'index' && isLeaf(node)) {
       openOverlay(node);
     } else {
       closeOverlay();
@@ -963,7 +967,7 @@
 
     render();
 
-    if (state.mode === 'mapa') {
+    if (state.mode === 'map') {
       requestAnimationFrame(function () {
         if (parts.length) scrollToStage();
       });
@@ -975,7 +979,7 @@
   }
 
   /* ---------------------------------------------------------
-     overlay de ficha
+     entry overlay
      --------------------------------------------------------- */
 
   var overlayEl = $('#detailOverlay');
@@ -1000,9 +1004,9 @@
       overlayBody.innerHTML = '';
       document.body.classList.remove('overlay-open');
     }
-    if (updateHash && state.mode === 'indice') {
+    if (updateHash && state.mode === 'index') {
       state.path = [];
-      history.replaceState(null, '', '#/indice');
+      history.replaceState(null, '', '#/index');
       render();
     }
 
@@ -1020,7 +1024,7 @@
   }
 
   /* ---------------------------------------------------------
-     player / guestbook / copiar
+     player / guestbook / copy
      --------------------------------------------------------- */
 
   function loadEmbed(btn) {
@@ -1031,7 +1035,7 @@
     var height = src.indexOf('album=') > -1 ? 350 : 120;
     slot.innerHTML = '<iframe src="' + esc(src) + '" width="100%" height="' + height + '" ' +
       'style="border:0;width:100%;height:' + height + 'px" loading="lazy" ' +
-      'title="player do Bandcamp" seamless></iframe>';
+      'title="Bandcamp player" seamless></iframe>';
   }
 
   function loadGuestbook(btn) {
@@ -1042,7 +1046,7 @@
     frame.className = 'guestbook-frame';
     frame.src = src;
     frame.loading = 'lazy';
-    frame.title = 'livro de visitas';
+    frame.title = 'guestbook';
     if (slot) slot.replaceChild(frame, btn);
   }
 
@@ -1050,7 +1054,7 @@
     var url = location.href;
     var done = function () {
       var old = btn.textContent;
-      btn.textContent = 'copiado';
+      btn.textContent = 'copied';
       setTimeout(function () { btn.textContent = old; }, 1400);
     };
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1066,7 +1070,7 @@
   }
 
   /* ---------------------------------------------------------
-     ajustes
+     settings
      --------------------------------------------------------- */
 
   var themeButtons = $$('[data-theme-option]');
@@ -1126,7 +1130,7 @@
   }
 
   /* ---------------------------------------------------------
-     entrada / loading
+     entry / loading
      --------------------------------------------------------- */
 
   function initIntro() {
