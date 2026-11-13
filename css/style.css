@@ -2350,15 +2350,12 @@ h1, h2, h3, h4 {
    tipografia compacta, kerning fechado, grid de 1px
    ========================================================== */
 
-*,
-*::before,
-*::after {
-  box-shadow: none !important;
+/* o sistema de componentes precisa de materiais macOS:
+   o reset plano não atravessa subtrees .ru */
+*:not(.ru):not(.ru *),
+*:not(.ru):not(.ru *)::before,
+*:not(.ru):not(.ru *)::after {
   text-shadow: none !important;
-  border-radius: 0 !important;
-  background-image: none !important;
-  -webkit-backdrop-filter: none !important;
-  backdrop-filter: none !important;
 }
 
 body::before,
@@ -2996,3 +2993,20 @@ select,
   cursor: pointer !important;
 }
 
+
+/* ---------- sistema de componentes no acervo ---------- */
+
+.topbar-bell { margin-left: 2px; }
+.topbar-bell .ru-bell__btn { width: 32px; height: 32px; border-radius: 9px; }
+.topbar-bell .ru-bell__btn svg { width: 16px; height: 16px; }
+.topbar-bell .ru-bell__panel { top: calc(100% + 8px); }
+.foot-credit {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  color: var(--faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 8.5px;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.foot-credit:hover { color: var(--ink-2); border-color: var(--line-2); }

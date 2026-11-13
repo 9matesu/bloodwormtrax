@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="mono">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>sistema · bloodworm trax</title>
+  <meta name="description" content="Sistema de componentes do acervo. Todos os componentes portados para HTML, CSS e JavaScript puro.">
+  <meta name="theme-color" content="#161616">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0a'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23cd9497'/%3E%3C/svg%3E">
+  <link rel="preload" href="assets/fonts/switzer-300.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/switzer-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/rare.css">
+</head>
+<body>
+
+<a class="skip-link" href="#conteudo">pular para o conteúdo</a>
+
+<div class="sis-app ru">
+  <aside class="sis-side">
+    <a class="sis-brand" href="index.html" aria-label="bloodworm trax, início">
+      <img src="assets/mark.png" alt="" width="30" height="28">
+      <b>sistema</b> <span>btx</span>
+    </a>
+
+    <nav class="sis-nav" aria-label="componentes">
+      <a href="#theme">theme selector <small>01</small></a>
+      <a href="#bounce">bounce sidebar <small>02</small></a>
+      <a href="#hook">hook sidebar <small>03</small></a>
+      <a href="#prox">proximity sidebar <small>04</small></a>
+      <a href="#gooey">gooey nav <small>05</small></a>
+      <a href="#progress">scroll progress <small>06</small></a>
+      <a href="#rail">rail toc <small>07</small></a>
+      <a href="#family">family drawer <small>08</small></a>
+      <a href="#otp">otp input <small>09</small></a>
+      <a href="#password">password input <small>10</small></a>
+      <a href="#duration">duration picker <small>11</small></a>
+      <a href="#delete">delete button <small>12</small></a>
+      <a href="#task">task list <small>13</small></a>
+      <a href="#toast">toast <small>14</small></a>
+      <a href="#bell">notification bell <small>15</small></a>
+      <a href="#emoji">emoji reaction <small>16</small></a>
+      <a href="#faq">faq <small>17</small></a>
+      <a href="#ai">ai status <small>18</small></a>
+      <a href="#counter">animated counter <small>19</small></a>
+      <a href="#code">code block <small>20</small></a>
+      <a href="#folder">folder <small>21</small></a>
+      <a href="#gh">github activity <small>22</small></a>
+      <a href="#gravity">gravity letters <small>23</small></a>
+      <a href="#grid">grid reveal <small>24</small></a>
+      <a href="#step">step player <small>25</small></a>
+      <a href="#voice">voice note <small>26</small></a>
+      <a href="#search">web search <small>27</small></a>
+      <a href="#fluid">fluid orb <small>28</small></a>
+      <a href="#matrix">matrix orb <small>29</small></a>
+    </nav>
+
+    <div class="sis-side-foot">
+      <p><a href="index.html">voltar ao acervo</a><br><a href="opcoda.html">página do Opcoda</a></p>
+      <p>Sistema visual de bloodworm trax. Porte em HTML, CSS e JS puro.</p>
+    </div>
+  </aside>
+
+  <main class="sis-main" id="conteudo">
+    <header class="sis-head">
+      <p class="sis-crumb">bloodworm trax <span aria-hidden="true">·</span> design system</p>
+      <h1>sistema</h1>
+      <p>Os 29 componentes do nosso sistema, portados para HTML, CSS e JavaScript puro. Os mesmos materiais, molas e gestos aparecem no acervo e na página do Opcoda. Sem React, sem Tailwind, sem dependências.</p>
+    </header>
+
+    <section class="sis-win" aria-label="janela do sistema">
+      <div class="sis-winbar" aria-hidden="true">
+        <i></i><i></i><i></i>
+        <span>sistema.btx</span>
+      </div>
+      <div class="sis-winbody">
+        <div class="sis-demo" style="justify-content:space-between">
+          <div>
+            <p style="margin:0;font-size:13px;color:var(--muted);max-width:440px;line-height:1.6">Escolha o tema. A preferência fica salva neste navegador e vale para o acervo inteiro.</p>
+          </div>
+          <div class="ru-theme" data-ru="theme" role="group" aria-label="tema do sistema">
+            <span class="ru-theme__thumb" aria-hidden="true"></span>
+            <button type="button" class="ru-theme__opt" data-theme-value="mono" aria-pressed="true"><i class="ru-theme__sw" style="background:#222"></i>mono</button>
+            <button type="button" class="ru-theme__opt" data-theme-value="claro" aria-pressed="false"><i class="ru-theme__sw" style="background:#f1f0ec"></i>claro</button>
+            <button type="button" class="ru-theme__opt" data-theme-value="vinho" aria-pressed="false"><i class="ru-theme__sw" style="background:#5b2b2d"></i>vinho</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="sis-grid">
+
+      <!-- 02 bounce -->
+      <article class="sis-card" id="bounce">
+        <div class="sis-card__head"><h2>bounce sidebar</h2><span>navegação</span></div>
+        <div class="sis-demo">
+          <ul class="ru-bounce" data-ru="bounce" aria-label="conteúdo de exemplo" style="width:100%;max-width:220px">
+            <span class="ru-bounce__dot" aria-hidden="true"></span>
+            <li class="ru-bounce__heading" role="presentation">contexto</li>
+            <li><button type="button" class="ru-bounce__item" data-active="true" aria-current="true">introdução</button></li>
+            <li><button type="button" class="ru-bounce__item">história</button></li>
+            <li><button type="button" class="ru-bounce__item">visão geral</button></li>
+            <li class="ru-bounce__heading" role="presentation">técnico</li>
+            <li><button type="button" class="ru-bounce__item">arquitetura</button></li>
+            <li><button type="button" class="ru-bounce__item">referências</button></li>
+          </ul>
+        </div>
+        <p class="sis-note">Um ponto viaja entre as linhas em arco. As linhas de grupo entram na medida.</p>
+      </article>
+
+      <!-- 03 hook -->
+      <article class="sis-card" id="hook">
+        <div class="sis-card__head"><h2>hook sidebar</h2><span>navegação</span></div>
+        <div class="sis-demo">
+          <nav class="ru-hook" data-ru="hook" aria-label="conteúdo de exemplo" style="width:100%;max-width:220px">
+            <span class="ru-hook__label">conteúdo</span>
+            <div class="ru-hook__list">
+              <span class="ru-hook__rail ru-hook__rail--hover" aria-hidden="true"><span class="ru-hook__line"></span><svg class="ru-hook__hook" width="12" height="7" viewBox="0 0 12 7" fill="none"><path d="M0.5 0a6 6 0 0 0 6 6H12"/></svg></span>
+              <span class="ru-hook__rail ru-hook__rail--active" aria-hidden="true"><span class="ru-hook__line"></span><svg class="ru-hook__hook" width="12" height="7" viewBox="0 0 12 7" fill="none"><path d="M0.5 0a6 6 0 0 0 6 6H12"/></svg></span>
+              <button type="button" class="ru-hook__item" data-active="true" aria-current="true">introdução</button>
+              <button type="button" class="ru-hook__item">história</button>
+              <button type="button" class="ru-hook__item">visão geral</button>
+              <button type="button" class="ru-hook__item">arquitetura</button>
+              <button type="button" class="ru-hook__item">referências</button>
+            </div>
+          </nav>
+        </div>
+        <p class="sis-note">Trilho tracejado que desce e curva em gancho até a linha ativa. Outro trilho segue o ponteiro.</p>
+      </article>
+
+      <!-- 04 prox -->
+      <article class="sis-card" id="prox">
+        <div class="sis-card__head"><h2>proximity sidebar</h2><span>navegação</span></div>
+        <div class="sis-demo">
+          <nav class="ru-prox" data-ru="prox" aria-label="conteúdo de exemplo" style="width:100%;max-width:220px">
+            <span class="ru-prox__rail" aria-hidden="true"></span>
+            <button type="button" class="ru-prox__item" data-active="true" aria-current="true">introdução</button>
+            <button type="button" class="ru-prox__item">história</button>
+            <button type="button" class="ru-prox__item">visão geral</button>
+            <button type="button" class="ru-prox__item">arquitetura</button>
+            <button type="button" class="ru-prox__item">referências</button>
+          </nav>
+        </div>
+        <p class="sis-note">Traços crescem conforme o ponteiro se aproxima na vertical.</p>
+      </article>
+
+      <!-- 05 gooey -->
+      <article class="sis-card" id="gooey">
+        <div class="sis-card__head"><h2>gooey nav</h2><span>navegação</span></div>
+        <div class="sis-demo">
+          <div class="ru-gooey" data-ru="gooey" role="group" aria-label="seções">
+            <span class="ru-gooey__stage" aria-hidden="true"><span class="ru-gooey__blob"></span></span>
+            <button type="button" class="ru-gooey__opt" aria-pressed="true">som</button>
+            <button type="button" class="ru-gooey__opt" aria-pressed="false">vistas</button>
+            <button type="button" class="ru-gooey__opt" aria-pressed="false">controle</button>
+            <button type="button" class="ru-gooey__opt" aria-pressed="false">licença</button>
+          </div>
+        </div>
+        <p class="sis-note">A pílula se estica e deixa um pescoço de gelatina entre os destinos.</p>
+      </article>
+
+      <!-- 06 progress -->
+      <article class="sis-card" id="progress">
+        <div class="sis-card__head"><h2>scroll progress</h2><span>navegação</span></div>
+        <div class="sis-demo">
+          <button type="button" class="ru-progress__btn" style="position:relative" aria-label="ver progresso de leitura" data-ru-demo-progress>
+            <svg viewBox="0 0 40 40" aria-hidden="true"><circle class="ru-progress__ring" cx="20" cy="20" r="17" style="stroke-dasharray:106.8;stroke-dashoffset:40"></circle></svg>
+            <span class="ru-progress__pct">62%</span>
+          </button>
+          <p class="sis-note" style="margin:0;max-width:220px">O indicador real fica no canto inferior direito desta página. Clique nele para abrir o índice.</p>
+        </div>
+      </article>
+
+      <!-- 07 rail -->
+      <article class="sis-card" id="rail">
+        <div class="sis-card__head"><h2>rail toc</h2><span>navegação</span></div>
+        <div class="sis-demo" style="align-items:flex-start">
+          <div class="ru-rail" data-ru="rail" style="min-height:150px">
+            <span class="ru-rail__track"><span class="ru-rail__fill"></span></span>
+            <div class="ru-rail__items">
+              <button type="button" class="ru-rail__item" data-target="#bounce"><span>01</span>navegação</button>
+              <button type="button" class="ru-rail__item" data-target="#otp"><span>02</span>entradas</button>
+              <button type="button" class="ru-rail__item" data-target="#toast"><span>03</span>retorno</button>
+              <button type="button" class="ru-rail__item" data-target="#counter"><span>04</span>exibição</button>
+              <button type="button" class="ru-rail__item" data-target="#fluid"><span>05</span>canvas</button>
+            </div>
+          </div>
+        </div>
+        <p class="sis-note">Trilho fino com preenchimento de leitura e estado ativo por seção.</p>
+      </article>
+
+      <!-- 08 family -->
+      <article class="sis-card" id="family">
+        <div class="sis-card__head"><h2>family drawer</h2><span>navegação</span></div>
+        <div class="sis-demo" style="min-height:150px;align-items:flex-end;justify-content:center">
+          <div class="ru-family is-open" data-ru="family">
+            <div class="ru-family__bar" aria-label="aplicativos do selo">
+              <button type="button" class="ru-family__item" data-label="acervo" aria-label="acervo">◒</button>
+              <button type="button" class="ru-family__item" data-label="Opcoda" aria-label="Opcoda">◍</button>
+              <button type="button" class="ru-family__item" data-label="Bandcamp" aria-label="Bandcamp">◈</button>
+              <button type="button" class="ru-family__item" data-label="arquivo" aria-label="arquivo">▤</button>
+              <button type="button" class="ru-family__item" data-label="links" aria-label="links">↗</button>
+            </div>
+            <button type="button" class="ru-family__trigger" aria-expanded="true">
+              <span>aplicativos</span>
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <p class="sis-note">Barra flutuante com entrada em mola e itens escalonados.</p>
+      </article>
+
+      <!-- 09 otp -->
+      <article class="sis-card" id="otp">
+        <div class="sis-card__head"><h2>otp input</h2><span>entrada</span></div>
+        <div class="sis-demo sis-demo--col">
+          <div class="ru-otp" data-ru="otp" data-code="123456">
+            <div class="ru-otp__row">
+              <label class="ru-otp__cell"><input class="ru-otp__input" type="text" maxlength="1" aria-label="Dígito 1"></label>
+              <label class="ru-otp__cell"><input class="ru-otp__input" type="text" maxlength="1" aria-label="Dígito 2"></label>
+              <label class="ru-otp__cell"><input class="ru-otp__input" type="text" maxlength="1" aria-label="Dígito 3"></label>
+              <label class="ru-otp__cell"><input class="ru-otp__input" type="text" maxlength="1" aria-label="Dígito 4"></label>
+              <label class="ru-otp__cell"><input class="ru-otp__input" type="text" maxlength="1" aria-label="Dígito 5"></label>
+              <label class="ru-otp__cell"><input class="ru-otp__input" type="text" maxlength="1" aria-label="Dígito 6"></label>
+            </div>
+            <span class="ru-otp__hint">Digite 1 2 3 4 5 6 para ver a confirmação.</span>
+          </div>
+        </div>
+        <p class="sis-note">Cada célula rola o caractere e desenha um anel no acerto. Código errado treme.</p>
+      </article>
+
+      <!-- 10 password -->
+      <article class="sis-card" id="password">
+        <div class="sis-card__head"><h2>password input</h2><span>entrada</span></div>
+        <div class="sis-demo sis-demo--col">
+          <div class="ru-pass" data-ru="password" data-score="0">
+            <div class="ru-pass__field">
+              <input class="ru-pass__input" type="password" placeholder="crie uma senha" aria-label="senha" autocomplete="new-password">
+              <button type="button" class="ru-pass__eye" aria-label="mostrar senha" aria-pressed="false">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M2.5 10s2.8-5 7.5-5 7.5 5 7.5 5-2.8 5-7.5 5-7.5-5-7.5-5z" stroke="currentColor" stroke-width="1.4"/>
+                  <circle cx="10" cy="10" r="2.1" stroke="currentColor" stroke-width="1.4"/>
+                  <path class="ru-pass__lid" d="M3 3l14 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+            <div class="ru-pass__meter" aria-hidden="true"><span class="ru-pass__bar"></span><span class="ru-pass__bar"></span><span class="ru-pass__bar"></span><span class="ru-pass__bar"></span></div>
+            <div class="ru-pass__meta"><span>força da senha</span><span class="ru-pass__state">muito curta</span></div>
+          </div>
+        </div>
+        <p class="sis-note">O olho altera o caminho e a tampa; a barra mede comprimento e variedade.</p>
+      </article>
+
+      <!-- 11 duration -->
+      <article class="sis-card" id="duration">
+        <div class="sis-card__head"><h2>duration picker</h2><span>entrada</span></div>
+        <div class="sis-demo sis-demo--col">
+          <div class="ru-duration" data-ru="duration">
+            <div class="ru-duration__seg">
+              <button type="button" class="ru-duration__step" data-step="1" aria-label="aumentar horas"><svg viewBox="0 0 10 10" fill="none"><path d="M2 6.5L5 3.5l3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <div class="ru-duration__val">9<small>horas</small></div>
+              <button type="button" class="ru-duration__step" data-step="-1" aria-label="diminuir horas"><svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5l3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+            <div class="ru-duration__seg">
+              <button type="button" class="ru-duration__step" data-step="1" aria-label="aumentar minutos"><svg viewBox="0 0 10 10" fill="none"><path d="M2 6.5L5 3.5l3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <div class="ru-duration__val">30<small>min</small></div>
+              <button type="button" class="ru-duration__step" data-step="-1" aria-label="diminuir minutos"><svg viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5l3-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+            <button type="button" class="ru-duration__unit" aria-label="alternar unidade">min</button>
+          </div>
+        </div>
+        <p class="sis-note">Segmentos independentes com passo e unidade alternável.</p>
+      </article>
+
+      <!-- 12 delete -->
+      <article class="sis-card" id="delete">
+        <div class="sis-card__head"><h2>delete button</h2><span>entrada</span></div>
+        <div class="sis-demo">
+          <button type="button" class="ru-delete" data-ru="delete">
+            <svg class="ru-delete__svg" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <g class="ru-delete__lid"><path d="M2.5 4.5h11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M6 4.5V3.2c0-.4.3-.7.7-.7h2.6c.4 0 .7.3.7.7v1.3" stroke="currentColor" stroke-width="1.3"/></g>
+              <path class="ru-delete__body" d="M4 4.5l.7 8.1c0 .5.5.9 1 .9h4.6c.5 0 .9-.4 1-.9l.7-8.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+            <span class="ru-delete__label">excluir</span>
+            <span class="ru-delete__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4.5 10.5l3.4 3.4 7.6-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+        </div>
+        <p class="sis-note">Primeiro toque arma a tampa; o segundo confirma e mostra o check.</p>
+      </article>
+
+      <!-- 13 task -->
+      <article class="sis-card" id="task">
+        <div class="sis-card__head"><h2>task list</h2><span>entrada</span></div>
+        <div class="sis-demo sis-demo--col">
+          <div class="ru-task" data-ru="task">
+            <button type="button" class="ru-task__row">
+              <span class="ru-task__box" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7.4l2.6 2.6L11 4.2"/></svg></span>
+              <span class="ru-task__label">congelar a versão 0.1.0</span>
+            </button>
+            <button type="button" class="ru-task__row is-done">
+              <span class="ru-task__box" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7.4l2.6 2.6L11 4.2"/></svg></span>
+              <span class="ru-task__label">testar o VST3 no Live 12</span>
+            </button>
+            <button type="button" class="ru-task__row">
+              <span class="ru-task__box" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7.4l2.6 2.6L11 4.2"/></svg></span>
+              <span class="ru-task__label">escrever dez presets de fábrica</span>
+            </button>
+            <button type="button" class="ru-task__row">
+              <span class="ru-task__box" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M3 7.4l2.6 2.6L11 4.2"/></svg></span>
+              <span class="ru-task__label">publicar o manual em PDF</span>
+            </button>
+          </div>
+        </div>
+        <p class="sis-note">O check desenha, o texto risca e a caixa dá um pulso curto.</p>
+      </article>
+
+      <!-- 14 toast -->
+      <article class="sis-card" id="toast">
+        <div class="sis-card__head"><h2>toast</h2><span>retorno</span></div>
+        <div class="sis-demo">
+          <button type="button" data-ru-toast="success" style="border:1px solid var(--line);border-radius:9px;padding:7px 11px;font-size:11px">sucesso</button>
+          <button type="button" data-ru-toast="error" style="border:1px solid var(--line);border-radius:9px;padding:7px 11px;font-size:11px">erro</button>
+          <button type="button" data-ru-toast="info" style="border:1px solid var(--line);border-radius:9px;padding:7px 11px;font-size:11px">info</button>
+          <button type="button" data-ru-toast="loading" style="border:1px solid var(--line);border-radius:9px;padding:7px 11px;font-size:11px">carregando</button>
+        </div>
+        <p class="sis-note">Empilhamento no canto, pausa no ponteiro e barra de vida.</p>
+      </article>
+
+      <!-- 15 bell -->
+      <article class="sis-card" id="bell">
+        <div class="sis-card__head"><h2>notification bell</h2><span>retorno</span></div>
+        <div class="sis-demo">
+          <div class="ru-bell" data-ru="bell">
+            <button type="button" class="ru-bell__btn" aria-label="notificações" aria-expanded="false">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M10 2.6a5 5 0 00-5 5v2.6L3.7 13h12.6L15 10.2V7.6a5 5 0 00-5-5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                <path class="ru-bell__clap" d="M8 15.4a2 2 0 004 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+              <span class="ru-bell__badge">3</span>
+            </button>
+            <div class="ru-bell__panel">
+              <div class="ru-bell__head"><b>notificações</b><button type="button" class="ru-bell__clear">marcar lidas</button></div>
+              <div class="ru-bell__note"><span class="ru-bell__dot"></span><p>Opcoda 0.1.0 está disponível.<br><small>há 12 minutos</small></p></div>
+              <div class="ru-bell__note"><span class="ru-bell__dot" style="background:var(--accent)"></span><p>Novo preset de fábrica adicionado.<br><small>há 1 hora</small></p></div>
+              <div class="ru-bell__note"><span class="ru-bell__dot" style="background:var(--green,#34c759)"></span><p>Licença ativada em duas máquinas.<br><small>ontem</small></p></div>
+            </div>
+          </div>
+          <button type="button" data-ru-bell-ping style="border:1px solid var(--line);border-radius:9px;padding:7px 11px;font-size:11px">novo alerta</button>
+        </div>
+        <p class="sis-note">O sino balança com impulso; o contador rola e o painel abre por cima.</p>
+      </article>
+
+      <!-- 16 emoji -->
+      <article class="sis-card" id="emoji">
+        <div class="sis-card__head"><h2>emoji reaction</h2><span>retorno</span></div>
+        <div class="sis-demo">
+          <div class="ru-emoji" data-ru="emoji" data-count="128">
+            <span class="ru-emoji__burst" aria-hidden="true"></span>
+            <button type="button" class="ru-emoji__btn" aria-pressed="false" aria-label="reagir com coração">
+              <span class="ru-emoji__glyph">♥</span>
+              <span class="ru-emoji__count">128</span>
+            </button>
+          </div>
+        </div>
+        <p class="sis-note">Partículas saem do gesto com ângulo e alcance variáveis.</p>
+      </article>
+
+      <!-- 17 faq -->
+      <article class="sis-card sis-card--wide" id="faq">
+        <div class="sis-card__head"><h2>faq</h2><span>retorno</span></div>
+        <div class="sis-demo sis-demo--col">
+          <div class="ru-faq" data-ru="faq" data-single="true" style="max-width:720px">
+            <div class="ru-faq__item is-open">
+              <button type="button" class="ru-faq__q" aria-expanded="true">O que é o acervo?
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+              <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>O catálogo do selo, as fichas de artista, o arquivo de lançamentos e os links de escuta. Tudo em uma página só, com o mesmo sistema visual.</p></div></div>
+            </div>
+            <div class="ru-faq__item">
+              <button type="button" class="ru-faq__q" aria-expanded="false">De onde vem este sistema?
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+              <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>De uma coleção aberta de componentes de interface que foi portada para HTML, CSS e JavaScript puro. O acervo e a página do Opcoda usam o mesmo conjunto, sem React e sem bibliotecas.</p></div></div>
+            </div>
+            <div class="ru-faq__item">
+              <button type="button" class="ru-faq__q" aria-expanded="false">O acervo muda com o tempo?
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+              <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>Sim. Cada lançamento entra com ficha, capa e faixas. O grafo do acervo se redesenha sozinho quando a lista cresce.</p></div></div>
+            </div>
+          </div>
+        </div>
+        <p class="sis-note">A resposta abre por grid, com mola e sem salto de layout.</p>
+      </article>
+
+      <!-- 18 ai -->
+      <article class="sis-card" id="ai">
+        <div class="sis-card__head"><h2>ai status</h2><span>exibição</span></div>
+        <div class="sis-demo sis-demo--col">
+          <div class="ru-ai" data-ru="ai" data-state="thinking" data-states="idle,thinking,searching,writing,done" data-interval="2400" data-label-thinking="lendo bytes" data-label-searching="buscando harmônicos" data-label-writing="montando textura" data-label-done="pronto" data-label-idle="em espera" role="status">
+            <span class="ru-ai__orb" aria-hidden="true">
+              <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8.2"/><circle class="ru-ai__fill" cx="10" cy="10" r="4.5"/><circle cx="10" cy="10" r="2.2" fill="currentColor" stroke="none" opacity=".7"/></svg>
+            </span>
+            <span class="ru-ai__label">motor <b>lendo bytes</b></span>
+          </div>
+          <p class="sis-note" style="margin:0">O texto alterna com brilho enquanto o estado não termina.</p>
+        </div>
+      </article>
+
+      <!-- 19 counter -->
+      <article class="sis-card" id="counter">
+        <div class="sis-card__head"><h2>animated counter</h2><span>exibição</span></div>
+        <div class="sis-demo sis-demo--col">
+          <div class="ru-counter" data-ru="counter" data-value="128400" data-duration="1500">
+            <span class="ru-counter__num"></span>
+            <span class="ru-counter__cap">bytes por grão</span>
+          </div>
+          <div class="ru-counter" data-ru="counter" data-value="99.4" data-decimals="1" data-suffix="%" style="--ru-accent:var(--accent)">
+            <span class="ru-counter__num"></span>
+            <span class="ru-counter__cap">precisão do motor</span>
+          </div>
+        </div>
+        <p class="sis-note">Cada casa é uma roleta que parte de zero quando entra na tela.</p>
+      </article>
+
+      <!-- 20 code -->
+      <article class="sis-card sis-card--wide" id="code">
+        <div class="sis-card__head"><h2>code block</h2><span>exibição</span></div>
+        <div class="sis-demo sis-demo--col">
+          <div class="ru-code" data-ru="code" style="max-width:720px">
+            <div class="ru-code__head">
+              <span class="ru-code__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="ru-code__file">grain.js</span>
+              <button type="button" class="ru-code__copy"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="7" y="7" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M13 5.5V5a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h.5" stroke="currentColor" stroke-width="1.5"/></svg> copiar</button>
+            </div>
+            <pre class="ru-code__body"><code>// 8 vozes, 66 parâmetros, nenhum sample
+const grain = (bytes, position) =&gt; {
+  const window = bytes.slice(position, position + 4096)
+  const density = 0.42
+  return window.map((b) =&gt; (b / 255) * density)
+}
+
+const voice = new Voice({ voices: 8, mode: "texture" })
+voice.load("opcoda.exe", grain)</code></pre>
+          </div>
+        </div>
+        <p class="sis-note">Cabeçalho de janela, realce simples e cópia que confirma em 1,8 segundo.</p>
+      </article>
+
+      <!-- 21 folder -->
+      <article class="sis-card" id="folder">
+        <div class="sis-card__head"><h2>folder</h2><span>exibição</span></div>
+        <div class="sis-demo" style="justify-content:center;padding-top:10px">
+          <div class="ru-folder" data-ru="folder" aria-label="pasta de presets">
+            <span class="ru-folder__tab" aria-hidden="true"></span>
+            <span class="ru-folder__back" aria-hidden="true"></span>
+            <span class="ru-folder__files" aria-hidden="true">
+              <span class="ru-folder__file"><i></i></span>
+              <span class="ru-folder__file"><i></i></span>
+              <span class="ru-folder__file"><i></i></span>
+            </span>
+            <span class="ru-folder__front" aria-hidden="true"></span>
+            <span class="ru-folder__label">presets</span>
+            <span class="ru-folder__count">3 itens</span>
+          </div>
+        </div>
+        <p class="sis-note">A aba e a frente abrem com perspectiva; as folhas sobem em mola.</p>
+      </article>
+
+      <!-- 22 gh -->
+      <article class="sis-card sis-card--wide" id="gh">
+        <div class="sis-card__head"><h2>github activity</h2><span>exibição</span></div>
+        <div class="sis-demo sis-demo--col">
+          <div class="ru-gh" data-ru="gh" style="max-width:760px">
+            <div class="ru-gh__months" aria-hidden="true"></div>
+            <div class="ru-gh__body">
+              <div class="ru-gh__days" aria-hidden="true"><span>seg</span><span></span><span>qua</span><span></span><span>sex</span><span></span><span></span></div>
+              <div class="ru-gh__grid" role="img" aria-label="mapa de contribuições do último ano"></div>
+              <span class="ru-gh__tip" aria-hidden="true"></span>
+            </div>
+            <div class="ru-gh__foot">
+              <span><b class="ru-gh__total">0</b> contribuições no último ano</span>
+              <span class="ru-gh__scale">menos <i data-level="0"></i><i data-level="1"></i><i data-level="2"></i><i data-level="3"></i><i data-level="4"></i> mais</span>
+            </div>
+          </div>
+        </div>
+        <p class="sis-note">Semanas viram colunas; o ponteiro abre a contagem exata de cada dia.</p>
+      </article>
+
+      <!-- 23 gravity -->
+      <article class="sis-card sis-card--wide" id="gravity">
+        <div class="sis-card__head"><h2>gravity letters</h2><span>movimento</span></div>
+        <div class="sis-demo sis-demo--col">
+          <div class="ru-gravity" data-ru="gravity" data-word="btx sistema">
+            <span class="ru-gravity__layer" aria-hidden="true"></span>
+            <span class="ru-gravity__word">mova o ponteiro para derrubar letras</span>
+          </div>
+        </div>
+        <p class="sis-note">Letras caem, quicam e formam pilhas com altura limitada.</p>
+      </article>
+
+      <!-- 24 grid -->
+      <article class="sis-card" id="grid">
+        <div class="sis-card__head"><h2>grid reveal</h2><span>movimento</span></div>
+        <div class="sis-demo sis-demo--col">
+          <div class="ru-grid" data-ru="grid">
+            <canvas></canvas>
+            <span class="ru-grid__hint">mova o ponteiro</span>
+          </div>
+        </div>
+        <p class="sis-note">Uma malha de pontos acende em raio e respira com o tempo.</p>
+      </article>
+
+      <!-- 25 step -->
+      <article class="sis-card" id="step">
+        <div class="sis-card__head"><h2>step player</h2><span>movimento</span></div>
+        <div class="sis-demo sis-demo--col">
+          <div class="ru-step" data-ru="step" data-duration="4600">
+            <div hidden>
+              <div class="ru-step__slide" data-title="carregar o arquivo">Um executável entra como matéria-prima. O motor lê os bytes e monta o buffer.</div>
+              <div class="ru-step__slide" data-title="repartir em grãos">O buffer é fatiado em janelas curtas. Densidade e tamanho definem a textura.</div>
+              <div class="ru-step__slide" data-title="mover pelo arquivo">A posição percorre o binário. O resultado é drone e ruído que não existe em sample.</div>
+              <div class="ru-step__slide" data-title="salvar o preset">Tudo vira um arquivo .opcoda com os 66 parâmetros e a origem.</div>
+            </div>
+            <div class="ru-step__head">
+              <button type="button" class="ru-step__play" aria-label="reproduzir"></button>
+              <div class="ru-step__meta">
+                <div class="ru-step__eyebrow">etapa 1 de 4</div>
+                <div class="ru-step__title">carregar o arquivo</div>
+              </div>
+              <div class="ru-step__dots" aria-hidden="true"></div>
+            </div>
+            <div class="ru-step__body"></div>
+            <div class="ru-step__nav"><button type="button" data-dir="prev">voltar</button><button type="button" data-dir="next">avançar</button></div>
+          </div>
+        </div>
+        <p class="sis-note">Anel de progresso, avanço por tempo e navegação manual.</p>
+      </article>
+
+      <!-- 26 voice -->
+      <article class="sis-card" id="voice">
+        <div class="sis-card__head"><h2>voice note</h2><span>movimento</span></div>
+        <div class="sis-demo sis-demo--col">
+          <div class="ru-voice" data-ru="voice" data-duration="34">
+            <button type="button" class="ru-voice__play" aria-label="reproduzir"></button>
+            <span class="ru-voice__avatar" aria-hidden="true">btx</span>
+            <div class="ru-voice__wave">
+              <input class="ru-voice__scrub" type="range" min="0" max="1" step="0.001" value="0" aria-label="posição do áudio">
+            </div>
+            <span class="ru-voice__time">0:00 de 0:34</span>
+          </div>
+        </div>
+        <p class="sis-note">Forma de onda gerada, reprodução simulada e arraste para buscar.</p>
+      </article>
+
+      <!-- 27 search -->
+      <article class="sis-card" id="search">
+        <div class="sis-card__head"><h2>web search</h2><span>movimento</span></div>
+        <div class="sis-demo sis-demo--col" style="min-height:120px">
+          <div class="ru-search" data-ru="search">
+            <div class="ru-search__field">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.2" stroke="currentColor" stroke-width="1.5"/><path d="m12.5 12.5 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <input class="ru-search__input" type="search" placeholder="buscar no arquivo" aria-label="buscar na web">
+              <button type="button" class="ru-search__go">buscar</button>
+            </div>
+            <div class="ru-search__panel">
+              <div class="ru-search__status"><i></i> buscando na web</div>
+              <div class="ru-search__results"></div>
+            </div>
+          </div>
+        </div>
+        <p class="sis-note">Estado de carregamento, resultados e chips de termos.</p>
+      </article>
+
+      <!-- 28 fluid -->
+      <article class="sis-card" id="fluid">
+        <div class="sis-card__head"><h2>fluid orb</h2><span>canvas</span></div>
+        <div class="sis-demo" style="justify-content:center">
+          <div class="ru-orb" data-ru="fluid" data-size="168" data-color="#cd9497">
+            <span class="ru-orb__canvas-wrap"><canvas aria-hidden="true"></canvas></span>
+            <span class="ru-orb__label"><b>fluid orb</b> shader</span>
+          </div>
+        </div>
+        <p class="sis-note">Ruído fBm em WebGL, com deriva lenta e borda circular.</p>
+      </article>
+
+      <!-- 29 matrix -->
+      <article class="sis-card" id="matrix">
+        <div class="sis-card__head"><h2>matrix orb</h2><span>canvas</span></div>
+        <div class="sis-demo" style="justify-content:center">
+          <div class="ru-orb" data-ru="matrix" data-size="168" data-state="thinking" style="color:var(--accent)">
+            <canvas aria-hidden="true"></canvas>
+            <span class="ru-orb__label">orb <b>pensando</b></span>
+          </div>
+        </div>
+        <p class="sis-note">Grade de pontos com estados que se misturam. Clique para alternar.</p>
+      </article>
+
+    </div>
+
+    <footer class="sis-credit">
+      <p>Sistema visual de bloodworm trax. Componentes de interface portados sob licença MIT com Commons Clause. O conjunto faz parte do acervo e da página do Opcoda, e não é distribuído como kit separado.</p>
+      <p>© 2026 bloodworm trax. <a href="index.html">acervo</a> · <a href="opcoda.html">Opcoda</a></p>
+    </footer>
+  </main>
+</div>
+
+<!-- indicador de leitura real da página -->
+<div class="ru-progress" data-ru="progress" aria-label="progresso de leitura">
+  <div class="ru-progress__list">
+    <button type="button" class="ru-progress__item" data-target="#bounce">navegação</button>
+    <button type="button" class="ru-progress__item" data-target="#otp">entradas</button>
+    <button type="button" class="ru-progress__item" data-target="#toast">retorno</button>
+    <button type="button" class="ru-progress__item" data-target="#counter">exibição</button>
+    <button type="button" class="ru-progress__item" data-target="#gravity">movimento</button>
+    <button type="button" class="ru-progress__item" data-target="#fluid">canvas</button>
+  </div>
+  <button type="button" class="ru-progress__btn" aria-label="abrir índice de leitura" aria-expanded="false">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><circle class="ru-progress__ring" cx="20" cy="20" r="17"></circle></svg>
+    <span class="ru-progress__pct">0%</span>
+  </button>
+</div>
+
+<script>
+  // tema salvo no acervo também vale aqui
+  try {
+    var raw = localStorage.getItem("btx.settings");
+    if (raw) {
+      var saved = JSON.parse(raw);
+      if (saved && saved.theme) document.documentElement.setAttribute("data-theme", saved.theme);
+    }
+  } catch (e) {}
+</script>
+<script src="js/rare.js"></script>
+</body>
+</html>

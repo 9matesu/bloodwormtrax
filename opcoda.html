@@ -16,6 +16,7 @@
   <link rel="preload" href="assets/fonts/switzer-500.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/opcoda.css">
+  <link rel="stylesheet" href="css/rare.css">
 </head>
 <body class="oc-page">
 
@@ -322,39 +323,55 @@
         <p>Dúvidas técnicas ou sobre a licença: bloodwormtrax@gmail.com. A resposta leva até um dia útil.</p>
       </header>
 
-      <div class="oc-faq">
-        <details>
-          <summary>o Opcoda toca samples comuns?</summary>
-          <p>Não. O Opcoda não carrega WAV nem AIFF. A fonte é um executável PE: o programa lê o cabeçalho, valida as seções e trata os bytes como amostras normalizadas.</p>
-        </details>
-        <details>
-          <summary>quais arquivos posso carregar?</summary>
-          <p>Arquivos .exe, .dll, .bin e .sys com cabeçalho PE válido. Se o arquivo for recusado, a interface avisa e o material anterior continua tocando.</p>
-        </details>
-        <details>
-          <summary>quantas vozes e qual o tamanho do grão?</summary>
-          <p>São oito vozes de grão, não oito vozes de nota. O grão vai de 1 ms a 2 s, a densidade de 1 a 200 grãos por segundo, e as janelas são Hann, Gauss, Hamming e Blackman.</p>
-        </details>
-        <details>
-          <summary>a entropia altera o som sozinha?</summary>
-          <p>Não. A entropia só mexe em um parâmetro quando você a roteia na matriz de modulação. Dispersão é um controle separado e não lê a curva.</p>
-        </details>
-        <details>
-          <summary>quais formatos e hosts são compatíveis?</summary>
-          <p>VST3 e standalone para Windows x64. O host verificado é o Ableton Live 12. A taxa de amostragem é definida pelo host, e a fonte é mono com saída estéreo.</p>
-        </details>
-        <details>
-          <summary>os presets abrem em outra máquina?</summary>
-          <p>Sim. São dez presets de fábrica e arquivos .opcoda para carregar e salvar. O estado do projeto também guarda o material, a região e a matriz de modulação.</p>
-        </details>
-        <details>
-          <summary>o que ainda está em desenvolvimento?</summary>
-          <p>O formato CLAP e a visualização da nuvem de grãos ainda não existem. O mapeamento de CC em outros hosts e o desempenho em sessões longas ainda estão em teste. O Ableton Live 12 é o host verificado.</p>
-        </details>
-        <details>
-          <summary>como recebo a licença?</summary>
-          <p>O instalador, a chave e a documentação chegam por e-mail em até 24 horas após a confirmação. O reembolso integral pode ser pedido em até 14 dias.</p>
-        </details>
+      <div class="oc-faq ru-faq ru-faq--boxed" data-ru="faq" data-single="true">
+        <div class="ru-faq__item is-open">
+          <button type="button" class="ru-faq__q" aria-expanded="true">o Opcoda toca samples comuns?
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>Não. O Opcoda não carrega WAV nem AIFF. A fonte é um executável PE: o programa lê o cabeçalho, valida as seções e trata os bytes como amostras normalizadas.</p></div></div>
+        </div>
+        <div class="ru-faq__item">
+          <button type="button" class="ru-faq__q" aria-expanded="false">quais arquivos posso carregar?
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>Arquivos .exe, .dll, .bin e .sys com cabeçalho PE válido. Se o arquivo for recusado, a interface avisa e o material anterior continua tocando.</p></div></div>
+        </div>
+        <div class="ru-faq__item">
+          <button type="button" class="ru-faq__q" aria-expanded="false">quantas vozes e qual o tamanho do grão?
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>São oito vozes de grão, não oito vozes de nota. O grão vai de 1 ms a 2 s, a densidade de 1 a 200 grãos por segundo, e as janelas são Hann, Gauss, Hamming e Blackman.</p></div></div>
+        </div>
+        <div class="ru-faq__item">
+          <button type="button" class="ru-faq__q" aria-expanded="false">a entropia altera o som sozinha?
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>Não. A entropia só mexe em um parâmetro quando você a roteia na matriz de modulação. Dispersão é um controle separado e não lê a curva.</p></div></div>
+        </div>
+        <div class="ru-faq__item">
+          <button type="button" class="ru-faq__q" aria-expanded="false">quais formatos e hosts são compatíveis?
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>VST3 e standalone para Windows x64. O host verificado é o Ableton Live 12. A taxa de amostragem é definida pelo host, e a fonte é mono com saída estéreo.</p></div></div>
+        </div>
+        <div class="ru-faq__item">
+          <button type="button" class="ru-faq__q" aria-expanded="false">os presets abrem em outra máquina?
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>Sim. São dez presets de fábrica e arquivos .opcoda para carregar e salvar. O estado do projeto também guarda o material, a região e a matriz de modulação.</p></div></div>
+        </div>
+        <div class="ru-faq__item">
+          <button type="button" class="ru-faq__q" aria-expanded="false">o que ainda está em desenvolvimento?
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>O formato CLAP e a visualização da nuvem de grãos ainda não existem. O mapeamento de CC em outros hosts e o desempenho em sessões longas ainda estão em teste. O Ableton Live 12 é o host verificado.</p></div></div>
+        </div>
+        <div class="ru-faq__item">
+          <button type="button" class="ru-faq__q" aria-expanded="false">como recebo a licença?
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>O instalador, a chave e a documentação chegam por e-mail em até 24 horas após a confirmação. O reembolso integral pode ser pedido em até 14 dias.</p></div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -384,6 +401,7 @@
         <nav class="oc-foot-links" aria-label="links do rodapé">
           <a href="index.html">acervo</a>
           <a href="index.html#/links">links</a>
+          <a href="sistema.html">sistema</a>
           <a href="mailto:bloodwormtrax@gmail.com">contato</a>
         </nav>
         <div class="oc-foot-meta">
@@ -396,29 +414,55 @@
 
 </main>
 
+<!-- progresso de leitura -->
+<div class="ru-progress" data-ru="progress" aria-label="progresso de leitura">
+  <div class="ru-progress__list">
+    <button type="button" class="ru-progress__item" data-target="#som">som</button>
+    <button type="button" class="ru-progress__item" data-target="#vistas">vistas</button>
+    <button type="button" class="ru-progress__item" data-target="#controle">controle</button>
+    <button type="button" class="ru-progress__item" data-target="#especificacoes">especificações</button>
+    <button type="button" class="ru-progress__item" data-target="#licenca">licença</button>
+    <button type="button" class="ru-progress__item" data-target="#perguntas">perguntas</button>
+  </div>
+  <button type="button" class="ru-progress__btn" aria-label="abrir índice de leitura" aria-expanded="false">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><circle class="ru-progress__ring" cx="20" cy="20" r="17"></circle></svg>
+    <span class="ru-progress__pct">0%</span>
+  </button>
+</div>
+
+<script src="js/rare.js"></script>
 <script>
 (function () {
   'use strict';
   var prices = { BRL: 'R$ 149', USD: '$ 27', EUR: '€ 25' };
+  var names = { BRL: 'real', USD: 'dólar', EUR: 'euro' };
   var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-cur]'));
   var fields = Array.prototype.slice.call(document.querySelectorAll('[data-price]'));
 
-  function setCurrency(cur) {
+  function setCurrency(cur, notify) {
     if (!prices[cur]) cur = 'BRL';
     fields.forEach(function (el) { el.textContent = prices[cur]; });
     buttons.forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.getAttribute('data-cur') === cur));
     });
     try { localStorage.setItem('opcoda.moeda', cur); } catch (e) {}
+    if (notify && window.BTXUI) {
+      BTXUI.toast({
+        title: 'Preços em ' + names[cur],
+        description: 'Licença única de ' + prices[cur] + ', com impostos calculados na compra.',
+        type: 'info',
+        duration: 2600
+      });
+    }
   }
 
   buttons.forEach(function (b) {
-    b.addEventListener('click', function () { setCurrency(b.getAttribute('data-cur')); });
+    b.addEventListener('click', function () { setCurrency(b.getAttribute('data-cur'), true); });
   });
 
   var saved = 'BRL';
   try { saved = localStorage.getItem('opcoda.moeda') || 'BRL'; } catch (e) {}
-  setCurrency(saved);
+  setCurrency(saved, false);
 })();
 </script>
 

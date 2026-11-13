@@ -800,3 +800,43 @@ code {
   .oc-final-side .oc-btn { width: 100%; }
 }
 
+
+/* ---------- sistema de componentes no opcoda ---------- */
+
+.oc-faq.ru-faq { border-bottom: 0; }
+.oc-faq .ru-faq__q { font-family: var(--font-sans); }
+.oc-faq .ru-faq__a p { font-family: var(--font-sans); }
+.oc-foot-meta a { border-bottom: 1px solid var(--line); }
+.oc-foot-meta a:hover { color: var(--ink); }
+
+.oc-rail {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  display: none;
+}
+@media (min-width: 1320px) {
+  .oc-rail { display: flex; }
+}
+
+/* hero: dimming mais forte para a copy respirar sobre as capturas */
+
+.oc-hero-bg { opacity: 0.62; }
+.oc-hero-bg img {
+  filter: saturate(0.62) contrast(0.98) brightness(0.84);
+}
+.oc-hero-shade {
+  background:
+    radial-gradient(120% 100% at 14% 44%, rgba(12, 12, 12, 0.96) 0%, rgba(12, 12, 12, 0.9) 38%, rgba(12, 12, 12, 0.62) 62%, rgba(12, 12, 12, 0.34) 100%),
+    linear-gradient(180deg, rgba(12, 12, 12, 0.48) 0%, rgba(12, 12, 12, 0.14) 40%, rgba(12, 12, 12, 0.64) 100%) !important;
+}
+.oc-hero-aside {
+  background: rgba(16, 16, 16, 0.74) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(1.35) !important;
+  backdrop-filter: blur(30px) saturate(1.35) !important;
+}
+.oc-hero-top .oc-lede,
+.oc-hero-top .oc-sub,
+.oc-hero-top .oc-title { text-shadow: 0 1px 18px rgba(0, 0, 0, 0.55); }
