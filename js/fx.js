@@ -1,5 +1,7 @@
 /* bloodworm trax — camada de interação
-   cursor próprio, luz de ponteiro, paralaxe do mapa e revelação no scroll. */
+   cursor próprio, luz de ponteiro, paralaxe do mapa e revelação no scroll.
+   A camada plana desliga cursor e luz; aqui evitamos trabalho quando isso
+   acontece (sem rAF infinito, sem escrever variáveis que ninguém lê). */
 
 (function () {
   'use strict';
@@ -8,9 +10,21 @@
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (reduced) return;
-
   /* ---------- cursor + luz ---------- */
+
+  function cursorEnabled() {
+    var probe = document.createElement('div');
+    probe.className = 'cursor';
+    probe.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(probe);
+    var visible = getComputedStyle(probe).display !== 'none';
+    probe.parentNode.removeChild(probe);
+    return visible;
+  }
+
+  function spotlightEnabled() {
+    return getComputedStyle(document.body, '::after').display !== 'none';
+  }
 
   function initPointer() {
     var dot = document.createElement('div');
@@ -27,25 +41,42 @@
     var rx = tx;
     var ry = ty;
     var shown = false;
-
-    function move(e) {
-      if (e.pointerType && e.pointerType !== 'mouse' && e.pointerType !== 'pen') return;
-      tx = e.clientX;
-      ty = e.clientY;
-      root.style.setProperty('--mx', tx.toFixed(1) + 'px');
-      root.style.setProperty('--my', ty.toFixed(1) + 'px');
-      if (!shown) {
-        shown = true;
-        root.classList.add('has-pointer', 'has-cursor');
-      }
-    }
+    var raf = 0;
+    var idle = 0;
+    var useSpotlight = spotlightEnabled();
 
     function frame() {
       rx += (tx - rx) * 0.18;
       ry += (ty - ry) * 0.18;
       dot.style.transform = 'translate3d(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px,0)';
       ring.style.transform = 'translate3d(' + rx.toFixed(1) + 'px,' + ry.toFixed(1) + 'px,0)';
-      requestAnimationFrame(frame);
+      raf = requestAnimationFrame(frame);
+    }
+
+    function start() {
+      if (!raf) raf = requestAnimationFrame(frame);
+    }
+
+    function stop() {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+    }
+
+    function move(e) {
+      if (e.pointerType && e.pointerType !== 'mouse' && e.pointerType !== 'pen') return;
+      tx = e.clientX;
+      ty = e.clientY;
+      if (useSpotlight) {
+        root.style.setProperty('--mx', tx.toFixed(1) + 'px');
+        root.style.setProperty('--my', ty.toFixed(1) + 'px');
+      }
+      if (!shown) {
+        shown = true;
+        root.classList.add('has-pointer', 'has-cursor');
+      }
+      start();
+      clearTimeout(idle);
+      idle = setTimeout(stop, 140);
     }
 
     var hoverSelector = 'a, button, input, select, textarea, summary, label, [role="button"], .gnode, .rel-cover, .node';
@@ -60,12 +91,11 @@
     window.addEventListener('blur', function () {
       root.classList.remove('has-pointer');
       ring.classList.remove('is-hover', 'is-down');
+      stop();
     });
     window.addEventListener('focus', function () {
       if (shown) root.classList.add('has-pointer');
     });
-
-    frame();
   }
 
   /* ---------- paralaxe do mapa ---------- */
@@ -142,10 +172,11 @@
     });
   }
 
-  if (fine) {
+  if (fine && !reduced && cursorEnabled()) {
     initPointer();
+  }
+  if (fine && !reduced) {
     initParallax();
   }
-
   initReveal();
 })();

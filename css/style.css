@@ -1,6 +1,6 @@
 /* ==========================================================
    bloodworm trax — acervo
-   Gambarino 400 / Switzer 300–500, self-hosted
+   Switzer 300–500, self-hosted
    ========================================================== */
 
 @font-face {
@@ -36,7 +36,7 @@
   --ink: #ececeb;
   --ink-2: #c9c9c6;
   --muted: #8d8d88;
-  --faint: #61615d;
+  --faint: #7f7f79;
   --accent: #cd9497;
   --accent-2: #e2b3b5;
   --accent-ink: #161616;
@@ -60,6 +60,12 @@
   --font-mono: 'Switzer', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --ease: cubic-bezier(0.22, 0.9, 0.24, 1);
   --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --r-sm: 2px;
+  --r-md: 4px;
+  --r-lg: 8px;
+  --dur-fast: 120ms;
+  --dur: 200ms;
+  --dur-slow: 320ms;
 }
 
 html[data-theme="claro"] {
@@ -71,7 +77,7 @@ html[data-theme="claro"] {
   --ink: #171716;
   --ink-2: #3b3b39;
   --muted: #6c6c66;
-  --faint: #96968f;
+  --faint: #6c6c66;
   --accent: #8d4d51;
   --accent-2: #6d3639;
   --accent-ink: #f8f7f3;
@@ -99,7 +105,7 @@ html[data-theme="vinho"] {
   --ink: #f1e7e2;
   --ink-2: #d9c6bf;
   --muted: #a68d86;
-  --faint: #7c655f;
+  --faint: #9a827b;
   --accent: #e0644f;
   --accent-2: #ee8875;
   --accent-ink: #170c09;
@@ -3010,3 +3016,70 @@ select,
   transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
 }
 .foot-credit:hover { color: var(--ink-2); border-color: var(--line-2); }
+
+/* ==========================================================
+   camada plana global — sem sombra decorativa, sem vidro
+   ========================================================== */
+
+*,
+*::before,
+*::after {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* sombras funcionais: apenas overlays e popovers */
+.detail-overlay-panel,
+.settings,
+.ru-toast,
+.ru-bell__panel,
+.ru-family__bar,
+.ru-progress__list,
+.ru-gh__tip,
+.ru-search__panel {
+  box-shadow: 0 18px 44px -28px rgba(0, 0, 0, 0.55) !important;
+}
+
+.settings { box-shadow: -24px 0 60px -40px rgba(0, 0, 0, 0.5) !important; }
+
+/* vidro só em overlays; superfícies sólidas no resto */
+.sidebar,
+.topbar,
+.settings,
+.scrim,
+.detail-overlay-scrim,
+.ru-bounce--boxed,
+.ru-bell__btn,
+.ru-bell__panel,
+.ru-progress__btn,
+.ru-progress__list,
+.ru-family__trigger,
+.ru-family__bar,
+.ru-toast {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.sidebar,
+.topbar,
+.settings { background: var(--paper) !important; }
+
+.scrim { background: rgba(0, 0, 0, 0.72) !important; }
+.detail-overlay-scrim { background: rgba(0, 0, 0, 0.78) !important; }
+
+.ru-bell__panel,
+.ru-family__bar,
+.ru-progress__list,
+.ru-toast,
+.ru-gh__tip,
+.ru-search__panel {
+  background: var(--ru-popover, var(--surface)) !important;
+}
+
+/* foco visível onde antes havia glow */
+.ru-otp__input:focus,
+.ru-pass__field:focus-within,
+.ru-search__field:focus-within {
+  outline: 2px solid var(--ru-accent, var(--accent));
+  outline-offset: 1px;
+}

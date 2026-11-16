@@ -50,10 +50,8 @@ code {
   gap: 12px;
   height: 52px;
   padding: 0 28px;
-  background: rgba(22, 22, 22, 0.72) !important;
+  background: #161616 !important;
   border-bottom: 1px solid var(--line);
-  -webkit-backdrop-filter: blur(22px) saturate(1.6) !important;
-  backdrop-filter: blur(22px) saturate(1.6) !important;
 }
 
 .oc-brand {
@@ -249,10 +247,8 @@ code {
   display: flex;
   flex-direction: column;
   padding: 26px 24px 24px;
-  background: rgba(22, 22, 22, 0.46) !important;
-  -webkit-backdrop-filter: blur(26px) saturate(1.5) !important;
-  backdrop-filter: blur(26px) saturate(1.5) !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(22, 22, 22, 0.94) !important;
+  border-left: 1px solid var(--line);
 }
 
 .oc-meta { margin: 0; border-top: 1px solid var(--line-2); }
@@ -555,8 +551,7 @@ code {
   bottom: -40%;
   width: 62%;
   height: 130%;
-  background: radial-gradient(closest-side, rgba(205, 148, 151, 0.22), rgba(205, 148, 151, 0)) !important;
-  filter: blur(48px);
+  background: radial-gradient(closest-side, rgba(205, 148, 151, 0.16), rgba(205, 148, 151, 0.05) 55%, rgba(205, 148, 151, 0)) !important;
   pointer-events: none;
 }
 .oc-buy-copy,
@@ -604,10 +599,8 @@ code {
   display: flex;
   flex-direction: column;
   padding: 26px 24px;
-  background: rgba(30, 30, 29, 0.42) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(1.5) !important;
-  backdrop-filter: blur(24px) saturate(1.5) !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(30, 30, 29, 0.96) !important;
+  border-left: 1px solid var(--line);
 }
 .oc-buy-card .oc-price { font-size: 56px; }
 .oc-buy-card .oc-price small { font-size: 9px; }
@@ -833,10 +826,5 @@ code {
     linear-gradient(180deg, rgba(12, 12, 12, 0.48) 0%, rgba(12, 12, 12, 0.14) 40%, rgba(12, 12, 12, 0.64) 100%) !important;
 }
 .oc-hero-aside {
-  background: rgba(16, 16, 16, 0.74) !important;
-  -webkit-backdrop-filter: blur(30px) saturate(1.35) !important;
-  backdrop-filter: blur(30px) saturate(1.35) !important;
+  background: rgba(16, 16, 16, 0.96) !important;
 }
-.oc-hero-top .oc-lede,
-.oc-hero-top .oc-sub,
-.oc-hero-top .oc-title { text-shadow: 0 1px 18px rgba(0, 0, 0, 0.55); }

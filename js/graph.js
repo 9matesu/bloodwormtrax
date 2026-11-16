@@ -38,7 +38,7 @@
       '<span class="crail-count">' + section.count + '</span>' +
     '</a>';
   }).join('') +
-    '<a class="crail crail-index" href="#/indice"><span class="crail-name">índice</span><span class="crail-count">→</span></a>';
+    '<a class="crail crail-index" href="#/index"><span class="crail-name">índice</span><span class="crail-count">→</span></a>';
 
   var artistMarkup = BTX.artists.map(function (artist, index) {
     return '<a class="gnode gnode-artist" href="#/artistas/' + esc(artist.id) + '" ' +
@@ -53,7 +53,7 @@
       'data-id="' + esc(r.id) + '" data-overlay="catalogo/' + r.year + '/' + esc(r.id) + '" ' +
       'style="--i:' + (BTX.artists.length + i) + '" ' +
       'aria-label="' + esc(r.cat) + ' ' + esc(r.title) + ', ' + esc(r.artist) + ', ' + r.year + '">' +
-      '<span class="gnode-frame"><img src="' + esc(r.thumb) + '" alt="" loading="lazy"></span>' +
+      '<span class="gnode-frame"><img src="' + esc(r.thumb) + '" alt="" width="320" height="320" decoding="async" loading="lazy"></span>' +
       '<span class="gnode-label">' +
         '<b>' + esc(r.title) + '</b>' +
         '<span>' + esc(r.artist) + ' · ' + r.year + '</span>' +

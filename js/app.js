@@ -156,7 +156,7 @@
 
   var ROOTS = [
     {
-      key: 'catalog',
+      key: 'catalogo',
       type: 'branch',
       title: 'catalog',
       meta: plural(BTX.releases.length, 'release', 'releases') + ' · ' + trackTotal + ' tracks',
@@ -164,7 +164,7 @@
       children: years
     },
     {
-      key: 'artists',
+      key: 'artistas',
       type: 'branch',
       title: 'artists',
       meta: plural(BTX.artists.length, 'artist', 'artists'),
@@ -172,7 +172,7 @@
       children: artistNodes
     },
     {
-      key: 'label',
+      key: 'selo',
       type: 'branch',
       title: 'label',
       meta: 'about · profile · contact',
@@ -180,7 +180,7 @@
       children: pageNodes
     },
     {
-      key: 'archive',
+      key: 'arquivo',
       type: 'branch',
       title: 'archive',
       meta: 'radio · messages · package',
@@ -286,18 +286,29 @@
      --------------------------------------------------------- */
 
   var saved = store.get('btx.settings', null) || {};
+
+  var MODES = { map: true, index: true };
+  var LEGACY_MODES = { mapa: 'map', indice: 'index' };
+  var THEMES = { mono: true, claro: true, vinho: true };
+  var LEGACY_THEMES = {
+    agar: 'claro',
+    noturno: 'mono',
+    sangue: 'vinho',
+    light: 'claro',
+    wine: 'vinho'
+  };
+
+  var savedMode = LEGACY_MODES[saved.mode] || saved.mode;
+  var savedTheme = LEGACY_THEMES[saved.theme] || saved.theme;
+
   var state = {
-    mode: saved.mode || (narrow ? 'index' : 'map'),
+    mode: MODES[savedMode] ? savedMode : (narrow ? 'index' : 'map'),
     path: [],
     search: '',
     filter: 'all',
     sort: 'natural',
     overlay: null
   };
-
-  var THEMES = { mono: true, light: true, wine: true };
-  var LEGACY_THEMES = { agar: 'claro', noturno: 'mono', sangue: 'vinho' };
-  var savedTheme = LEGACY_THEMES[saved.theme] || saved.theme;
 
   var settings = {
     theme: THEMES[savedTheme] ? savedTheme : 'mono',
@@ -454,7 +465,7 @@
 
   function coverHTML(src, alt) {
     return '<figure class="detail-cover">' +
-      '<img src="' + esc(src) + '" alt="' + esc(alt) + '" loading="lazy">' +
+      '<img src="' + esc(src) + '" alt="' + esc(alt) + '" width="1000" height="1000" decoding="async" loading="lazy">' +
     '</figure>';
   }
 
@@ -587,7 +598,7 @@
     var path = 'catalog/' + r.year + '/' + r.id;
     return '<article class="rel-card">' +
       '<a class="rel-cover" href="#/' + path + '" data-path="' + path + '">' +
-        '<img src="' + esc(r.cover) + '" alt="cover for ' + esc(r.title) + '" loading="lazy">' +
+        '<img src="' + esc(r.cover) + '" alt="cover for ' + esc(r.title) + '" width="1000" height="1000" decoding="async" loading="lazy">' +
       '</a>' +
       '<div class="rel-info">' +
         '<h3 class="rel-title"><a href="#/' + path + '" data-path="' + path + '">' + esc(r.title) + '</a></h3>' +
@@ -851,18 +862,18 @@
     var clear = $('#searchClear');
     if (clear) clear.hidden = true;
 
-    if (state.mode === 'indice') {
-      history.pushState(null, '', path.length ? '#/' + path.join('/') : '#/');
+    if (state.mode === 'index') {
+      history.pushState(null, '', path.length ? '#/' + path.join('/') : '#/index');
       if (node && isLeaf(node)) openOverlay(node);
       else closeOverlay();
     } else {
-      setHash(path, 'mapa');
+      setHash(path, 'map');
       closeOverlay();
     }
 
     render();
 
-    if (state.mode === 'mapa') {
+    if (state.mode === 'map') {
       requestAnimationFrame(function () {
         if (path.length) scrollToStage();
         else window.scrollTo({ top: 0, behavior: 'auto' });
@@ -881,10 +892,10 @@
   }
 
   var BLOCKS = {
-    catalog: 'releases',
-    artists: 'artists',
-    label: 'pages',
-    archive: 'pages',
+    catalogo: 'releases',
+    artistas: 'artists',
+    selo: 'pages',
+    arquivo: 'pages',
     links: 'links'
   };
 
@@ -916,6 +927,14 @@
     });
   }
 
+  var ROUTE_ALIASES = {
+    catalog: 'catalogo',
+    artists: 'artistas',
+    label: 'selo',
+    archive: 'arquivo'
+  };
+  var MODE_ALIASES = { indice: 'index', mapa: 'map' };
+
   function applyHash() {
     var raw = '';
     try {
@@ -924,19 +943,15 @@
       raw = location.hash.replace(/^#\/?/, '');
     }
 
-    if (raw === 'index') {
-      state.mode = 'index';
+    var modeAlias = MODE_ALIASES[raw];
+    if (modeAlias || raw === 'index' || raw === 'map') {
+      state.mode = modeAlias || raw;
       state.path = [];
       closeOverlay();
       render();
-      return;
-    }
-
-    if (raw === 'map') {
-      state.mode = 'map';
-      state.path = [];
-      closeOverlay();
-      render();
+      requestAnimationFrame(function () {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      });
       return;
     }
 
@@ -948,6 +963,7 @@
     }
 
     var parts = raw.split('/').filter(Boolean);
+    if (parts.length) parts[0] = ROUTE_ALIASES[parts[0]] || parts[0];
     var node = resolveNode(parts);
 
     if (!node) {
@@ -1183,7 +1199,7 @@
         if (intro.parentNode) intro.parentNode.removeChild(intro);
         var main = $('#conteudo');
         if (main) main.focus({ preventScroll: true });
-        if (state.mode === 'mapa' && state.path.length) scrollToStage();
+        if (state.mode === 'map' && state.path.length) scrollToStage();
         else window.scrollTo({ top: 0, behavior: 'auto' });
       }, wait);
     }
@@ -1192,22 +1208,18 @@
       if (finished) return;
       if (actions) actions.hidden = true;
       if (progress) progress.hidden = false;
-      setPct(4);
-      setStatus('carregando fontes');
+      setPct(8);
+      setStatus('preparando o catálogo');
 
       var fontJobs = [];
       if (document.fonts && document.fonts.load) {
-        fontJobs.push(document.fonts.load('400 32px Gambarino'));
         fontJobs.push(document.fonts.load('300 16px Switzer'));
         fontJobs.push(document.fonts.load('400 16px Switzer'));
-        fontJobs.push(document.fonts.load('500 12px Switzer'));
       }
 
       var jobs = [
-        { label: 'carregando fontes', task: Promise.all(fontJobs).catch(function () {}) },
-        { label: 'abrindo marca', task: loadImage('assets/mark.png') },
-        { label: 'abrindo capas', task: Promise.all(BTX.releases.map(function (r) { return loadImage(r.cover); })) },
-        { label: 'carregando miniaturas', task: Promise.all(BTX.releases.map(function (r) { return loadImage(r.thumb); })) }
+        { label: 'preparando o catálogo', task: Promise.all(fontJobs).catch(function () {}) },
+        { label: 'abrindo marca', task: loadImage('assets/mark.png') }
       ];
 
       var done = 0;
@@ -1356,14 +1368,13 @@
         settings = {
           theme: 'mono',
           grain: 3,
-          mode: window.matchMedia('(max-width: 900px)').matches ? 'indice' : 'mapa'
+          mode: window.matchMedia('(max-width: 900px)').matches ? 'index' : 'map'
         };
         state.mode = settings.mode;
         applySettings();
         syncSettings();
         persist();
-        if (state.mode === 'indice') setHash([], 'indice');
-        else setHash([], 'mapa');
+        setHash([], state.mode);
         render();
       });
     }
@@ -1504,7 +1515,7 @@
   initIntro();
   applyHash();
   requestAnimationFrame(function () {
-    if (state.mode === 'mapa' && state.path.length) scrollToStage();
+    if (state.mode === 'map' && state.path.length) scrollToStage();
     else window.scrollTo({ top: 0, behavior: 'auto' });
   });
 
