@@ -514,16 +514,14 @@
           '<p class="detail-artist">' + esc(r.artist) + '</p>' +
           '<p class="detail-date">' + fmtDate(r.date) + '</p>' +
           '<div class="detail-actions">' +
-            '<a class="btn-soft sm" href="' + esc(r.bandcamp) + '" target="_blank" rel="noopener">bandcamp ' + icon('link') + '</a>' +
-            '<button type="button" class="btn-text sm" data-copy>copy link</button>' +
+            '<a class="btn-soft sm" href="' + esc(r.bandcamp) + '" target="_blank" rel="noopener">listen on bandcamp ' + icon('link') + '</a>' +
           '</div>' +
         '</div>' +
       '</div>' +
       '<div class="detail-body">' + paragraphs(r.about) + '</div>' +
-      (r.note ? '<p class="detail-note">' + esc(r.note) + '</p>' : '') +
       '<div class="embed-slot">' +
         '<button type="button" class="embed-load" data-embed="' + esc(r.embed) + '">' +
-          icon('play') + 'load Bandcamp player' +
+          icon('play') + 'play' +
         '</button>' +
       '</div>' +
       specHTML(rows) +
