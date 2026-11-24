@@ -138,6 +138,18 @@
     };
   });
 
+  var softwareNodes = (BTX.software || []).map(function (s) {
+    return {
+      key: s.id,
+      type: 'page',
+      title: s.title,
+      meta: s.meta,
+      date: '',
+      page: s,
+      children: []
+    };
+  });
+
   var linkNodes = BTX.links.map(function (l) {
     return {
       key: norm(l.label).replace(/[^a-z0-9]+/g, '-'),
@@ -186,6 +198,14 @@
       meta: 'radio · messages · package',
       date: '',
       children: archiveNodes
+    },
+    {
+      key: 'software',
+      type: 'branch',
+      title: 'software',
+      meta: 'Opcoda · granular synthesizer',
+      date: '',
+      children: softwareNodes
     },
     {
       key: 'links',
@@ -672,7 +692,7 @@
     }
 
     if (show('pages')) {
-      var pages = sortData(BTX.pages.concat(BTX.archive));
+      var pages = sortData(BTX.pages.concat(BTX.archive).concat(BTX.software || []));
       html += '<section class="index-block" id="block-pages">' +
         '<header class="block-head"><h2>label &amp; archive</h2><span>' + pages.length + ' pages</span></header>' +
         '<div class="row-grid">' + pages.map(function (p) {

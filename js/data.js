@@ -45,7 +45,20 @@ const BTX = {
         { n: 8, title: "acqua", duration: "5:42" },
         { n: 9, title: "inverno", duration: "0:54" }
       ],
+      software: [
+    {
+      id: "opcoda",
+      title: "Opcoda",
+      meta: "granular synthesizer · VST3 and standalone",
+      body: "An experimental plugin inspired by Ryoji Ikeda, databending and EPROM. It turns executable files into sound.",
       links: [
+        { label: "open Opcoda", href: "opcoda.html", icon: "link", meta: "product page" },
+        { label: "source code", href: "https://github.com/9matesu/Opcoda", icon: "link", meta: "GitHub" }
+      ]
+    }
+  ],
+
+  links: [
         { label: "Bandcamp", href: "https://bloodwormtrax.bandcamp.com/album/btx003-antologia", icon: "bandcamp" },
         { label: "Spotify", href: "https://open.spotify.com/album/2JSAni7cci036ZP82h26AN", icon: "spotify" }
       ]
@@ -283,7 +296,6 @@ Na minha função`,
   ],
 
   links: [
-    { label: "Opcoda", href: "opcoda.html", icon: "link", meta: "sintetizador granular" },
     { label: "Bandcamp", href: "https://bloodwormtrax.bandcamp.com", icon: "bandcamp", meta: "catálogo e compra" },
     { label: "Instagram", href: "https://instagram.com/bloodwormtrax", icon: "instagram", meta: "@bloodwormtrax" },
     { label: "SoundCloud", href: "https://soundcloud.com/bloodwormtrax", icon: "soundcloud", meta: "streams e mixes" },
