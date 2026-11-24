@@ -1120,6 +1120,8 @@
     var meta = document.querySelector('meta[name="theme-color"]');
     var colors = { mono: '#0a0a0a', claro: '#f2f2ef', vinho: '#12090a' };
     if (meta && colors[settings.theme]) meta.setAttribute('content', colors[settings.theme]);
+    var btn = $('#themeBtn');
+    if (btn) btn.setAttribute('aria-label', 'theme: ' + settings.theme);
   }
 
   function closeNav() {
@@ -1127,141 +1129,6 @@
     var t = $('#navToggle');
     if (t) t.setAttribute('aria-expanded', 'false');
     scrim.hidden = true;
-  }
-
-  /* ---------------------------------------------------------
-     entry / loading
-     --------------------------------------------------------- */
-
-  function initIntro() {
-    var intro = $('#intro');
-    if (!intro) return;
-
-    if (store.get('btx.seen', false)) {
-      intro.remove();
-      document.body.classList.remove('intro-open');
-      return;
-    }
-
-    document.body.classList.add('intro-open');
-
-    var openBtn = $('#introOpen');
-    var skipBtn = $('#introSkip');
-    var actions = $('#introActions');
-    var progress = $('#introProgress');
-    var bar = $('#introBar');
-    var pctEl = $('#introPct');
-    var statusEl = $('#introStatus');
-    var finished = false;
-
-    function setPct(pct) {
-      if (bar) bar.style.width = pct + '%';
-      if (pctEl) pctEl.textContent = Math.round(pct) + '%';
-    }
-
-    function setStatus(text) {
-      if (statusEl) statusEl.textContent = text;
-    }
-
-    function loadImage(src) {
-      return new Promise(function (resolve) {
-        var img = new Image();
-        img.onload = function () { resolve(); };
-        img.onerror = function () { resolve(); };
-        img.src = src;
-      });
-    }
-
-    function finish() {
-      if (finished) return;
-      finished = true;
-      store.set('btx.seen', true);
-      intro.classList.add('done');
-      document.body.classList.remove('intro-open');
-      var wait = reduced ? 40 : 620;
-      setTimeout(function () {
-        if (intro.parentNode) intro.parentNode.removeChild(intro);
-        var main = $('#conteudo');
-        if (main) main.focus({ preventScroll: true });
-        if (state.mode === 'map' && state.path.length) scrollToStage();
-        else window.scrollTo({ top: 0, behavior: 'auto' });
-      }, wait);
-    }
-
-    function startLoad() {
-      if (finished) return;
-      if (actions) actions.hidden = true;
-      if (progress) progress.hidden = false;
-      setPct(8);
-      setStatus('preparando o catálogo');
-
-      var fontJobs = [];
-      if (document.fonts && document.fonts.load) {
-        fontJobs.push(document.fonts.load('300 16px Switzer'));
-        fontJobs.push(document.fonts.load('400 16px Switzer'));
-      }
-
-      var jobs = [
-        { label: 'preparando o catálogo', task: Promise.all(fontJobs).catch(function () {}) },
-        { label: 'abrindo marca', task: loadImage('assets/mark.png') }
-      ];
-
-      var done = 0;
-      jobs.forEach(function (job) {
-        Promise.resolve(job.task).catch(function () {}).then(function () {
-          done++;
-          setPct(4 + (done / jobs.length) * 86);
-          setStatus(job.label);
-        });
-      });
-
-      var all = Promise.all(jobs.map(function (job) {
-        return Promise.resolve(job.task).catch(function () {});
-      }));
-
-      var timeout = new Promise(function (resolve) {
-        setTimeout(resolve, 4200);
-      });
-
-      Promise.race([all, timeout]).then(function () {
-        setPct(100);
-        setStatus('acervo aberto');
-        setTimeout(finish, reduced ? 60 : 420);
-      });
-    }
-
-    if (openBtn) openBtn.addEventListener('click', startLoad);
-    if (skipBtn) skipBtn.addEventListener('click', finish);
-
-    var card = $('#introCard');
-
-    document.addEventListener('keydown', function (e) {
-      if (!document.body.classList.contains('intro-open')) return;
-      if (e.key === 'Escape') {
-        finish();
-        return;
-      }
-      if (e.key !== 'Tab') return;
-
-      var items = $$('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])', intro)
-        .filter(function (el) { return !el.hidden && el.offsetParent !== null; });
-      if (!items.length) {
-        e.preventDefault();
-        return;
-      }
-      var first = items[0];
-      var last = items[items.length - 1];
-      if (e.shiftKey && (document.activeElement === first || document.activeElement === card)) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    });
-
-    if (card) card.focus({ preventScroll: true });
-    else if (openBtn) openBtn.focus({ preventScroll: true });
   }
 
   /* ---------------------------------------------------------
@@ -1438,7 +1305,6 @@
   applySettings();
   syncSettings();
   wireEvents();
-  initIntro();
   applyHash();
   requestAnimationFrame(function () {
     if (state.mode === 'map' && state.path.length) scrollToStage();
