@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="pt-BR" data-theme="mono">
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="mono">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Opcoda — sintetizador granular · bloodworm trax</title>
-  <meta name="description" content="Um sintetizador granular que toca arquivos executáveis. Oito vozes, quatro vistas, 66 parâmetros automatizáveis. VST3 e standalone para Windows x64.">
+  <title>Opcoda - granular synthesizer - bloodworm trax</title>
+  <meta name="description" content="A granular synthesizer that plays executable files. Eight voices, four views, 66 automatable parameters. VST3 and standalone for Windows x64.">
   <meta name="theme-color" content="#161616">
-  <meta property="og:title" content="Opcoda — sintetizador granular">
-  <meta property="og:description" content="Executáveis como fonte sonora. Oito vozes granulares, quatro vistas, 66 parâmetros automatizáveis. VST3 e standalone para Windows x64.">
+  <meta property="og:title" content="Opcoda - granular synthesizer">
+  <meta property="og:description" content="Executables as a sound source. Eight granular voices, four views, 66 automatable parameters. VST3 and standalone for Windows x64.">
   <meta property="og:type" content="product">
   <meta property="og:image" content="assets/opcoda/real/opcoda-ui.png">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0a'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23f3f3f0'/%3E%3C/svg%3E">
@@ -20,74 +20,74 @@
 </head>
 <body class="oc-page">
 
-<a class="oc-skip" href="#conteudo">pular para o conteúdo</a>
+<a class="oc-skip" href="#conteudo">skip to content</a>
 
 <header class="oc-nav">
-  <a class="oc-brand" href="index.html" aria-label="bloodworm trax, início">
+  <a class="oc-brand" href="index.html" aria-label="bloodworm trax, home">
     <img src="assets/mark.png" alt="" width="145" height="133">
     <span class="oc-brand-word">bloodworm trax</span>
   </a>
   <span class="oc-crumb-sep" aria-hidden="true"></span>
   <span class="oc-crumb"><b>Opcoda</b></span>
 
-  <nav class="oc-nav-links" aria-label="seções da página">
-    <a href="#som">som</a>
-    <a href="#vistas">vistas</a>
-    <a href="#controle">controle</a>
-    <a href="#especificacoes">especificações</a>
-    <a href="#licenca">licença</a>
-    <a href="#perguntas">perguntas</a>
+  <nav class="oc-nav-links" aria-label="page sections">
+    <a href="#som">sound</a>
+    <a href="#vistas">views</a>
+    <a href="#controle">control</a>
+    <a href="#especificacoes">specifications</a>
+    <a href="#licenca">license</a>
+    <a href="#perguntas">faq</a>
   </nav>
 
-  <div class="oc-currency" role="group" aria-label="moeda dos preços">
+  <div class="oc-currency" role="group" aria-label="price currency">
     <button type="button" data-cur="BRL" aria-pressed="true">R$</button>
     <button type="button" data-cur="USD" aria-pressed="false">$</button>
-    <button type="button" data-cur="EUR" aria-pressed="false">€</button>
+    <button type="button" data-cur="EUR" aria-pressed="false">â‚¬</button>
   </div>
 
-  <a class="oc-nav-buy" href="#licenca">comprar · <span data-price>R$ 97</span></a>
+  <a class="oc-nav-buy" href="#licenca">buy - <span data-price>R$ 97</span></a>
 </header>
 
 <main id="conteudo">
 
   <section class="oc-hero" aria-labelledby="titulo">
     <div class="oc-hero-bg" aria-hidden="true">
-      <img src="assets/opcoda/real/opcoda-ui.webp" alt="" width="1180" height="760" decoding="async">
-      <img src="assets/opcoda/real/opcoda-hex.webp" alt="" width="1180" height="760" decoding="async">
-      <img src="assets/opcoda/real/opcoda-entropy.webp" alt="" width="1180" height="760" decoding="async">
-      <img src="assets/opcoda/real/opcoda-env.webp" alt="" width="1180" height="760" decoding="async">
-      <img src="assets/opcoda/real/opcoda-filter.webp" alt="" width="1180" height="760" decoding="async">
+      <img src="assets/opcoda/real/opcoda-ui.webp" alt="Opcoda waveform view with the listening region, grain window and knobs for size, density, position, spray, pitch, window, pan, stereo, level, p.rand and scan." width="1180" height="760" decoding="async">
+      <img src="assets/opcoda/real/opcoda-hex.webp" alt="Opcoda hex view with byte columns, ASCII translation and an ASM column decoding 64-bit instructions." width="1180" height="760" decoding="async">
+      <img src="assets/opcoda/real/opcoda-entropy.webp" alt="Opcoda entropy view with the Shannon entropy curve and a 0 to 8 bits per byte scale." width="1180" height="760" decoding="async">
+      <img src="assets/opcoda/real/opcoda-env.webp" alt="Opcoda ENV panel with the ADSR drawing, live envelope point and knobs on the right." width="1180" height="760" decoding="async">
+      <img src="assets/opcoda/real/opcoda-filter.webp" alt="Opcoda FILTER panel showing two biquad filters in series with cutoff and resonance handles." width="1180" height="760" decoding="async">
     </div>
     <div class="oc-hero-shade" aria-hidden="true"></div>
 
     <div class="oc-wrap oc-hero-top">
       <div class="oc-hero-copy">
         <h1 class="oc-title" id="titulo">Opcoda</h1>
-        <p class="oc-lede">Plugin VST3 e standalone que usa executáveis como fonte sonora. Oito vozes granulares leem os bytes de um programa e os convertem em drone, textura e ruído.</p>
-        <p class="oc-sub">Para trilha, som experimental e design de som. Roda no Windows x64 em host VST3 de 64 bits, com quatro vistas do arquivo durante a reprodução.</p>
+        <p class="oc-lede">A VST3 and standalone plugin that uses executables as a sound source. Eight granular voices read the bytes of a program and turn them into drone, texture and noise.</p>
+        <p class="oc-sub">For scoring, experimental sound and sound design. Runs on Windows x64 in a 64-bit VST3 host, with four views of the file during playback.</p>
         <div class="oc-actions">
-          <a class="oc-btn oc-btn-solid" href="#licenca">comprar licença</a>
-          <a class="oc-btn" href="#vistas">ver as quatro vistas</a>
+          <a class="oc-btn oc-btn-solid" href="#licenca">buy license</a>
+          <a class="oc-btn" href="#vistas">see the four views</a>
         </div>
       </div>
 
       <div class="oc-hero-aside">
         <dl class="oc-meta">
-          <div><dt>versão</dt><dd>0.1.0</dd></div>
-          <div><dt>formato</dt><dd>VST3 e standalone</dd></div>
-          <div><dt>plataforma</dt><dd>Windows x64</dd></div>
-          <div><dt>host verificado</dt><dd>Ableton Live 12</dd></div>
-          <div><dt>vozes</dt><dd>8 granulares</dd></div>
-          <div><dt>grão</dt><dd>1 ms a 2 s</dd></div>
-          <div><dt>parâmetros</dt><dd>66 automatizáveis</dd></div>
-          <div><dt>presets</dt><dd>10 · arquivos .opcoda</dd></div>
-          <div><dt>interface</dt><dd>1180 × 760 fixa</dd></div>
+          <div><dt>version</dt><dd>0.1.0</dd></div>
+          <div><dt>format</dt><dd>VST3 and standalone</dd></div>
+          <div><dt>platform</dt><dd>Windows x64</dd></div>
+          <div><dt>verified host</dt><dd>Ableton Live 12</dd></div>
+          <div><dt>voices</dt><dd>8 granular</dd></div>
+          <div><dt>grain</dt><dd>1 ms to 2 s</dd></div>
+          <div><dt>parameters</dt><dd>66 automatable</dd></div>
+          <div><dt>presets</dt><dd>10 - .opcoda files</dd></div>
+          <div><dt>interface</dt><dd>1180 Ã— 760 fixed</dd></div>
         </dl>
 
         <div class="oc-price-block">
-          <p class="oc-price"><span data-price>R$ 97</span> <small>acesso antecipado</small></p>
-          <p class="oc-price-note">Pagamento único. A licença inclui o VST3, o standalone e as atualizações da série 0.x, e ativa duas máquinas.</p>
-          <a class="oc-btn oc-btn-solid oc-buy-link" href="#licenca">comprar licença</a>
+          <p class="oc-price"><span data-price>R$ 97</span> <small>early access</small></p>
+          <p class="oc-price-note">One-time payment. The license includes the VST3, the standalone and 0.x series updates, and activates two machines.</p>
+          <a class="oc-btn oc-btn-solid oc-buy-link" href="#licenca">buy license</a>
         </div>
       </div>
     </div>
@@ -96,83 +96,83 @@
   <section class="oc-section" id="som" aria-labelledby="som-titulo">
     <div class="oc-wrap">
       <header class="oc-sec-head">
-        <h2 id="som-titulo">fonte de som</h2>
-        <p>O Opcoda carrega .exe, .dll, .bin e .sys com cabeçalho PE válido. Lê o cabeçalho, valida as seções e normaliza os bytes como amostras.</p>
+        <h2 id="som-titulo">Sound source</h2>
+        <p>Opcoda loads .exe, .dll, .bin and .sys files with a valid PE header. It reads the header, validates the sections and normalizes the bytes as samples.</p>
       </header>
 
       <div class="oc-arch">
         <div class="oc-arch-col">
-          <p>O material muda conforme a região lida. Código comprimido gera textura densa; tabelas de importação, material esparso.</p>
-          <p>O motor tem oito vozes, grãos de 1 ms a 2 s, densidade de 1 a 200 grãos por segundo e quatro janelas: Hann, Gauss, Hamming e Blackman.</p>
+          <p>The material changes with the region being read. Compressed code gives dense texture; import tables give sparse material.</p>
+          <p>The engine has eight voices, grains from 1 ms to 2 s, density from 1 to 200 grains per second, and four windows: Hann, Gauss, Hamming and Blackman.</p>
         </div>
         <div class="oc-arch-col">
-          <p>Filtros, envelope, LFO e matriz atuam sobre os grãos em tempo real. As quatro vistas mostram o arquivo durante a reprodução.</p>
-          <p>O material e a região de escuta ficam salvos no projeto. Na próxima sessão, o plugin abre no mesmo ponto.</p>
+          <p>Filters, envelope, LFO and matrix act on the grains in real time. The four views show the file during playback.</p>
+          <p>The material and the listening region are saved with the project. The plugin opens at the same point in the next session.</p>
         </div>
       </div>
 
       <p class="oc-chain">
-        <span>executável PE</span><em aria-hidden="true">→</em>
-        <span>cabeçalho e seções</span><em aria-hidden="true">→</em>
-        <span>bytes para amostras</span><em aria-hidden="true">→</em>
-        <span>motor granular</span><em aria-hidden="true">→</em>
-        <span>filtros e envelope</span><em aria-hidden="true">→</em>
-        <span>saída estéreo</span>
+        <span>PE executable</span><em aria-hidden="true">â†’</em>
+        <span>header and sections</span><em aria-hidden="true">â†’</em>
+        <span>bytes to samples</span><em aria-hidden="true">â†’</em>
+        <span>granular engine</span><em aria-hidden="true">â†’</em>
+        <span>filters and envelope</span><em aria-hidden="true">â†’</em>
+        <span>stereo output</span>
       </p>
-      <p class="oc-chain-note">O LFO e a matriz modulam o motor. O envelope controla o gate de cada voz.</p>
+      <p class="oc-chain-note">The LFO and the matrix modulate the engine. The envelope controls the gate of each voice.</p>
     </div>
   </section>
 
   <section class="oc-section" id="vistas" aria-labelledby="vistas-titulo">
     <div class="oc-wrap">
       <header class="oc-sec-head">
-        <h2 id="vistas-titulo">quatro vistas</h2>
-        <p>Teclas 1 a 4 alternam as vistas. Os painéis ENV e FILTER mostram os parâmetros ajustados; as pegas escrevem os mesmos valores dos knobs.</p>
+        <h2 id="vistas-titulo">Four views</h2>
+        <p>Keys 1 to 4 switch views. The ENV and FILTER panels show the current parameters; the handles write the same values as the knobs.</p>
       </header>
 
       <div class="oc-gallery">
         <figure class="oc-shot oc-shot-wide">
-          <img src="assets/opcoda/real/opcoda-ui.webp" width="1180" height="760" alt="Interface do Opcoda com a vista de forma de onda, região de escuta marcada, janela do grão e knobs de size, density, position, spray, pitch, window, pan, stereo, level, p.rand e scan.">
+          <img src="assets/opcoda/real/opcoda-ui.webp" width="1180" height="760" alt="Opcoda waveform view with the listening region, grain window and knobs for size, density, position, spray, pitch, window, pan, stereo, level, p.rand and scan.">
           <figcaption>
-            <span class="oc-shot-tag">vista 01 · onda</span>
-            <h3>forma de onda</h3>
-            <p>Mostra o material carregado. O retângulo marca a região de escuta e a janela acompanha o trecho em reprodução. Transporte e medidor estéreo ficam na parte inferior.</p>
+            <span class="oc-shot-tag">view 01 - wave</span>
+            <h3>Waveform</h3>
+            <p>Shows the loaded material. The rectangle marks the listening region and the window follows the playing excerpt. Transport and stereo meter sit at the bottom.</p>
           </figcaption>
         </figure>
 
         <figure class="oc-shot oc-shot-wide">
-          <img src="assets/opcoda/real/opcoda-hex.webp" width="1180" height="760" alt="Vista hexadecimal do Opcoda com colunas de bytes, tradução ASCII e coluna ASM desmontando instruções de 64 bits.">
+          <img src="assets/opcoda/real/opcoda-hex.webp" width="1180" height="760" alt="Opcoda hex view with byte columns, ASCII translation and an ASM column decoding 64-bit instructions.">
           <figcaption>
-            <span class="oc-shot-tag">vista 02 · bytes</span>
-            <h3>bytes, ASCII e ASM</h3>
-            <p>Bytes em hexadecimal, tradução ASCII e instrução de 64 bits decodificada. Permite localizar a região a ouvir e conferir o material.</p>
+            <span class="oc-shot-tag">view 02 - bytes</span>
+            <h3>Bytes, ASCII and ASM</h3>
+            <p>Bytes in hexadecimal, ASCII translation and the decoded 64-bit instruction. Use it to find the region to hear and check the material.</p>
           </figcaption>
         </figure>
 
         <figure class="oc-shot">
-          <img src="assets/opcoda/real/opcoda-entropy.webp" width="1180" height="760" alt="Vista de entropia do Opcoda com a curva em janelas de 256 bytes e o eixo de 0 a 8 bits.">
+          <img src="assets/opcoda/real/opcoda-entropy.webp" width="1180" height="760" alt="Opcoda entropy view with the Shannon entropy curve and a 0 to 8 bits per byte scale.">
           <figcaption>
-            <span class="oc-shot-tag">vista 03 · entropia</span>
-            <h3>entropia</h3>
-            <p>Curva de entropia em janelas de 256 bytes, de 0 a 8 bits. A curva pode ser roteada na matriz de modulação.</p>
+            <span class="oc-shot-tag">view 03 - entropy</span>
+            <h3>Entropy</h3>
+            <p>A visual guide to finding regions worth hearing. Shannon entropy runs from 0 to 8 bits per byte and plots the density of each byte column. High values mark dense material, low values mark repetitive material. Use the curve to pick a region by ear. In the modulation matrix, Entropy is a source that can be routed to Spray. Entropy describes the material. It does not generate randomness and it does not replace Spray.</p>
           </figcaption>
         </figure>
 
         <figure class="oc-shot">
-          <img src="assets/opcoda/real/opcoda-env.webp" width="1180" height="760" alt="Painel ENV do Opcoda com o desenho do ADSR, o ponto vivo do envelope e os knobs à direita.">
+          <img src="assets/opcoda/real/opcoda-env.webp" width="1180" height="760" alt="Opcoda ENV panel with the ADSR drawing, live envelope point and knobs on the right.">
           <figcaption>
-            <span class="oc-shot-tag">painel · env</span>
-            <h3>envelope ADSR</h3>
-            <p>Desenho do ADSR com ponto vivo no sustain. Cantos ajustam ataque, decay, sustain e release; pegas de meio dobram as curvas.</p>
+            <span class="oc-shot-tag">panel - env</span>
+            <h3>ADSR envelope</h3>
+            <p>ADSR drawing with a live point on sustain. Corners set attack, decay, sustain and release; mid handles bend the curves.</p>
           </figcaption>
         </figure>
 
         <figure class="oc-shot">
-          <img src="assets/opcoda/real/opcoda-filter.webp" width="1180" height="760" alt="Painel FILTER do Opcoda com a resposta dos dois filtros biquad em série e as pegas de corte e Q.">
+          <img src="assets/opcoda/real/opcoda-filter.webp" width="1180" height="760" alt="Opcoda FILTER panel showing two biquad filters in series with cutoff and resonance handles.">
           <figcaption>
-            <span class="oc-shot-tag">painel · filter</span>
-            <h3>dois filtros em série</h3>
-            <p>Resposta dos dois filtros biquad com corte modulado. Pega horizontal ajusta o corte; vertical, a ressonância. Tipo, inclinação e drive ficam nas teclas ao lado.</p>
+            <span class="oc-shot-tag">panel - filter</span>
+            <h3>Two filters in series</h3>
+            <p>Response of the two biquad filters with modulated cutoff. The horizontal handle sets cutoff, the vertical one sets resonance. Type, slope and drive sit on the keys beside the knobs.</p>
           </figcaption>
         </figure>
       </div>
@@ -182,41 +182,41 @@
   <section class="oc-section" id="controle" aria-labelledby="controle-titulo">
     <div class="oc-wrap">
       <header class="oc-sec-head">
-        <h2 id="controle-titulo">o que você controla.</h2>
-        <p>66 parâmetros automatizáveis, todos expostos ao host. O standalone repete os mesmos controles e adiciona teclado virtual e MIDI.</p>
+        <h2 id="controle-titulo">Control</h2>
+        <p>66 automatable parameters, all exposed to the host. The standalone repeats the same controls and adds a virtual keyboard and MIDI.</p>
       </header>
 
       <div class="oc-groups">
         <article class="oc-group">
-          <h3>o motor</h3>
+          <h3>Engine</h3>
           <ul class="oc-lines">
-            <li>Oito vozes de grão, cada uma com tamanho, densidade, posição, dispersão, afinação e panorama.</li>
-            <li>Grãos de 1 ms a 2 s e densidade de 1 a 200 grãos por segundo.</li>
-            <li>Quatro janelas de grão: Hann, Gauss, Hamming e Blackman.</li>
-            <li>Scan percorre o arquivo de ponta a ponta enquanto o material toca.</li>
-            <li>Leitura estéreo com pan e largura por grão.</li>
+            <li>Eight grain voices, each with size, density, position, spray, pitch and pan.</li>
+            <li>Grains from 1 ms to 2 s and density from 1 to 200 grains per second.</li>
+            <li>Four grain windows: Hann, Gauss, Hamming and Blackman.</li>
+            <li>Scan moves through the file from start to end as the material plays.</li>
+            <li>Stereo reading with pan and width per grain.</li>
           </ul>
         </article>
 
         <article class="oc-group">
-          <h3>o controle</h3>
+          <h3>Control</h3>
           <ul class="oc-lines">
-            <li>Envelope ADSR com curvas ajustáveis nos quatro segmentos.</li>
-            <li>Dois filtros biquad em série, com corte, ressonância, inclinação e drive.</li>
-            <li>LFO e matriz de modulação com oito rotas e oito fontes.</li>
-            <li>Teclado virtual e controle por MIDI no standalone.</li>
-            <li>Automation e CC no host, com 66 parâmetros endereçáveis.</li>
+            <li>ADSR envelope with adjustable curves on all four segments.</li>
+            <li>Two biquad filters in series, with cutoff, resonance, slope and drive.</li>
+            <li>LFO and modulation matrix with eight routes and eight sources.</li>
+            <li>Virtual keyboard and MIDI control in the standalone.</li>
+            <li>Automation and CC in the host, with 66 addressable parameters.</li>
           </ul>
         </article>
 
         <article class="oc-group">
-          <h3>o arquivo</h3>
+          <h3>File</h3>
           <ul class="oc-lines">
-            <li>Quatro vistas: forma de onda, bytes com ASCII e ASM, entropia e matriz.</li>
-            <li>A vista de bytes mostra o arquivo em hexadecimal com a instrução decodificada ao lado.</li>
-            <li>A curva de entropia mostra onde o arquivo é denso e onde é esparso.</li>
-            <li>Dez presets de fábrica e arquivos .opcoda para guardar material, região e matriz.</li>
-            <li>Carregamento de .exe, .dll, .bin e .sys com cabeçalho PE válido.</li>
+            <li>Four views: waveform, bytes with ASCII and ASM, entropy and matrix.</li>
+            <li>The byte view shows the file in hexadecimal with the decoded instruction beside it.</li>
+            <li>The entropy curve is a visual guide to dense and sparse regions, so you can pick a passage worth hearing.</li>
+            <li>Ten factory presets and .opcoda files to save material, region and matrix.</li>
+            <li>Loads .exe, .dll, .bin and .sys files with a valid PE header.</li>
           </ul>
         </article>
       </div>
@@ -226,56 +226,56 @@
   <section class="oc-section" id="especificacoes" aria-labelledby="especificacoes-titulo">
     <div class="oc-wrap">
       <header class="oc-sec-head">
-        <h2 id="especificacoes-titulo">especificações.</h2>
-        <p>O instrumento é distribuído como VST3 e standalone. A taxa de amostragem é definida pelo host, e a fonte é mono com saída estéreo e pan por grão.</p>
+        <h2 id="especificacoes-titulo">Specifications</h2>
+        <p>The plugin ships as VST3 and standalone. The host sets the sample rate. The source is mono with stereo output and pan per grain.</p>
       </header>
 
       <div class="oc-specs">
         <div class="oc-spec-col">
-          <h3>formatos e sistema</h3>
+          <h3>Formats and system</h3>
           <dl>
-            <div><dt>formato</dt><dd>VST3 e standalone</dd></div>
-            <div><dt>plataforma</dt><dd>Windows x64</dd></div>
-            <div><dt>host verificado</dt><dd>Ableton Live 12</dd></div>
-            <div><dt>taxa de amostragem</dt><dd>definida pelo host</dd></div>
-            <div><dt>fonte</dt><dd>mono</dd></div>
-            <div><dt>saída</dt><dd>estéreo com pan por grão</dd></div>
-            <div><dt>interface</dt><dd>1180 × 760 fixa</dd></div>
+            <div><dt>format</dt><dd>VST3 and standalone</dd></div>
+            <div><dt>platform</dt><dd>Windows x64</dd></div>
+            <div><dt>verified host</dt><dd>Ableton Live 12</dd></div>
+            <div><dt>sample rate</dt><dd>set by the host</dd></div>
+            <div><dt>source</dt><dd>mono</dd></div>
+            <div><dt>output</dt><dd>stereo with pan per grain</dd></div>
+            <div><dt>interface</dt><dd>1180 Ã— 760 fixed</dd></div>
           </dl>
         </div>
         <div class="oc-spec-col">
           <h3>motor</h3>
           <dl>
-            <div><dt>vozes</dt><dd>8 granulares</dd></div>
-            <div><dt>grão</dt><dd>1 ms a 2 s</dd></div>
-            <div><dt>densidade</dt><dd>1 a 200 grãos por segundo</dd></div>
-            <div><dt>pitch</dt><dd>−48 a +48 semitons</dd></div>
-            <div><dt>janelas</dt><dd>Hann, Gauss, Hamming e Blackman</dd></div>
-            <div><dt>filtros</dt><dd>2 biquads em série</dd></div>
-            <div><dt>modulação</dt><dd>8 rotas e 8 fontes</dd></div>
+            <div><dt>voices</dt><dd>8 granular</dd></div>
+            <div><dt>grain</dt><dd>1 ms to 2 s</dd></div>
+            <div><dt>density</dt><dd>1 to 200 grains per second</dd></div>
+            <div><dt>pitch</dt><dd>-48 to +48 semitones</dd></div>
+            <div><dt>windows</dt><dd>Hann, Gauss, Hamming and Blackman</dd></div>
+            <div><dt>filters</dt><dd>2 biquads in series</dd></div>
+            <div><dt>modulation</dt><dd>8 routes and 8 sources</dd></div>
           </dl>
         </div>
         <div class="oc-spec-col">
-          <h3>conteúdo e operação</h3>
+          <h3>Content and operation</h3>
           <dl>
-            <div><dt>parâmetros</dt><dd>66 automatizáveis</dd></div>
-            <div><dt>presets</dt><dd>10 de fábrica</dd></div>
-            <div><dt>bancos</dt><dd>arquivos .opcoda</dd></div>
-            <div><dt>vistas</dt><dd>4, com teclas 1 a 4</dd></div>
-            <div><dt>transporte</dt><dd>Espaço e teclado virtual</dd></div>
-            <div><dt>atalhos</dt><dd>L, K, A e Ctrl+Z</dd></div>
-            <div><dt>versão</dt><dd>0.1.0</dd></div>
+            <div><dt>parameters</dt><dd>66 automatable</dd></div>
+            <div><dt>presets</dt><dd>10 factory</dd></div>
+            <div><dt>banks</dt><dd>.opcoda files</dd></div>
+            <div><dt>views</dt><dd>4, with keys 1 to 4</dd></div>
+            <div><dt>transport</dt><dd>Space and virtual keyboard</dd></div>
+            <div><dt>shortcuts</dt><dd>L, K, A and Ctrl+Z</dd></div>
+            <div><dt>version</dt><dd>0.1.0</dd></div>
           </dl>
         </div>
       </div>
 
       <div class="oc-req">
-        <div class="oc-req-head"><span>requisitos técnicos</span></div>
+        <div class="oc-req-head"><span>System requirements</span></div>
         <div class="oc-req-grid">
-          <div><b>sistema</b><span>Windows x64</span></div>
-          <div><b>host</b><span>VST3 de 64 bits</span></div>
-          <div><b>verificado em</b><span>Ableton Live 12</span></div>
-          <div><b>tela</b><span>1180 × 760 ou maior</span></div>
+          <div><b>system</b><span>Windows x64</span></div>
+          <div><b>host</b><span>64-bit VST3</span></div>
+          <div><b>verified in</b><span>Ableton Live 12</span></div>
+          <div><b>screen</b><span>1180 Ã— 760 or larger</span></div>
         </div>
       </div>
     </div>
@@ -285,31 +285,31 @@
     <div class="oc-wrap">
       <div class="oc-buy">
         <div class="oc-buy-copy">
-          <h2 id="licenca-titulo">licença.</h2>
-          <p>O Opcoda está na versão 0.1.0, em acesso antecipado. A compra libera o build atual, o VST3 e o standalone, e as atualizações da série 0.x. A chave chega por e-mail após a confirmação do pagamento e ativa duas máquinas.</p>
+          <h2 id="licenca-titulo">License</h2>
+          <p>Opcoda 0.1.0 is in early access. The purchase unlocks the current build, the VST3 and the standalone, plus 0.x series updates. The key arrives by email after payment and activates two machines.</p>
 
           <ul class="oc-includes">
-            <li>VST3 e standalone</li>
-            <li>10 presets de fábrica</li>
-            <li>atualizações da série 0.x</li>
-            <li>documentação do repositório</li>
-            <li>duas ativações por licença</li>
-            <li>suporte por e-mail</li>
-            <li>build de avaliação</li>
+            <li>VST3 and standalone</li>
+            <li>10 factory presets</li>
+            <li>0.x series updates</li>
+            <li>repository documentation</li>
+            <li>two activations per license</li>
+            <li>email support</li>
+            <li>evaluation build</li>
           </ul>
         </div>
 
         <div class="oc-buy-card">
-          <p class="oc-price"><span data-price>R$ 97</span> <small>+ impostos</small></p>
-          <p class="oc-price-note">Pagamento único. O build de avaliação não expira, mas não salva presets até a ativação.</p>
-          <a class="oc-btn oc-btn-solid oc-buy-link" href="#licenca">comprar licença</a>
-          <a class="oc-btn" href="mailto:bloodwormtrax@gmail.com?subject=Opcoda%20avalia%C3%A7%C3%A3o">pedir build de avaliação</a>
+          <p class="oc-price"><span data-price>R$ 97</span> <small>+ taxes</small></p>
+          <p class="oc-price-note">One-time payment. The evaluation build does not expire, but it does not save presets until activation.</p>
+          <a class="oc-btn oc-btn-solid oc-buy-link" href="#licenca">buy license</a>
+          <a class="oc-btn" href="mailto:bloodwormtrax@gmail.com?subject=Opcoda%20evaluation">request evaluation build</a>
 
           <div class="oc-license">
-            <div><span>entrega</span><b>digital · e-mail</b></div>
-            <div><span>ativações</span><b>2 máquinas</b></div>
-            <div><span>updates</span><b>série 0.x</b></div>
-            <div><span>reembolso</span><b>14 dias</b></div>
+            <div><span>delivery</span><b>digital - email</b></div>
+            <div><span>activations</span><b>2 machines</b></div>
+            <div><span>updates</span><b>0.x series</b></div>
+            <div><span>refund</span><b>14 days</b></div>
           </div>
         </div>
       </div>
@@ -319,58 +319,58 @@
   <section class="oc-section" id="perguntas" aria-labelledby="perguntas-titulo">
     <div class="oc-wrap">
       <header class="oc-sec-head">
-        <h2 id="perguntas-titulo">perguntas.</h2>
-        <p>Dúvidas técnicas ou sobre a licença: bloodwormtrax@gmail.com. A resposta leva até um dia útil.</p>
+        <h2 id="perguntas-titulo">FAQ</h2>
+        <p>Technical and license questions: bloodwormtrax@gmail.com. Reply within one business day.</p>
       </header>
 
       <div class="oc-faq ru-faq ru-faq--boxed" data-ru="faq" data-single="true">
         <div class="ru-faq__item is-open">
-          <button type="button" class="ru-faq__q" aria-expanded="true">o Opcoda toca samples comuns?
+          <button type="button" class="ru-faq__q" aria-expanded="true">Does Opcoda play regular samples?
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </button>
-          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>Não. O Opcoda não carrega WAV nem AIFF. A fonte é um executável PE: o programa lê o cabeçalho, valida as seções e trata os bytes como amostras normalizadas.</p></div></div>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>No. Opcoda does not load WAV or AIFF. The source is a PE executable: the plugin reads the header, validates the sections and treats the bytes as normalized samples.</p></div></div>
         </div>
         <div class="ru-faq__item">
-          <button type="button" class="ru-faq__q" aria-expanded="false">quais arquivos posso carregar?
+          <button type="button" class="ru-faq__q" aria-expanded="false">Which files can I load?
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </button>
-          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>Arquivos .exe, .dll, .bin e .sys com cabeçalho PE válido. Se o arquivo for recusado, a interface avisa e o material anterior continua tocando.</p></div></div>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>Files with .exe, .dll, .bin and .sys extensions and a valid PE header. If a file is rejected, the interface reports it and the previous material keeps playing.</p></div></div>
         </div>
         <div class="ru-faq__item">
-          <button type="button" class="ru-faq__q" aria-expanded="false">quantas vozes e qual o tamanho do grão?
+          <button type="button" class="ru-faq__q" aria-expanded="false">How many voices and what grain size?
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </button>
-          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>São oito vozes de grão, não oito vozes de nota. O grão vai de 1 ms a 2 s, a densidade de 1 a 200 grãos por segundo, e as janelas são Hann, Gauss, Hamming e Blackman.</p></div></div>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>Eight grain voices, not eight note voices. Grain runs from 1 ms to 2 s, density from 1 to 200 grains per second, with Hann, Gauss, Hamming and Blackman windows.</p></div></div>
         </div>
         <div class="ru-faq__item">
-          <button type="button" class="ru-faq__q" aria-expanded="false">a entropia altera o som sozinha?
+          <button type="button" class="ru-faq__q" aria-expanded="false">Does entropy change the sound on its own?
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </button>
-          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>Não. A entropia só mexe em um parâmetro quando você a roteia na matriz de modulação. Dispersão é um controle separado e não lê a curva.</p></div></div>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>No. In the modulation matrix, Entropy is a source and Spray is a destination. Route Entropy to Spray and the curve starts to move the grain positions. With no route, Spray stays on its own knob.</p></div></div>
         </div>
         <div class="ru-faq__item">
-          <button type="button" class="ru-faq__q" aria-expanded="false">quais formatos e hosts são compatíveis?
+          <button type="button" class="ru-faq__q" aria-expanded="false">Which formats and hosts are supported?
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </button>
-          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>VST3 e standalone para Windows x64. O host verificado é o Ableton Live 12. A taxa de amostragem é definida pelo host, e a fonte é mono com saída estéreo.</p></div></div>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>VST3 and standalone for Windows x64. The verified host is Ableton Live 12. The host sets the sample rate. The source is mono with stereo output.</p></div></div>
         </div>
         <div class="ru-faq__item">
-          <button type="button" class="ru-faq__q" aria-expanded="false">os presets abrem em outra máquina?
+          <button type="button" class="ru-faq__q" aria-expanded="false">Do presets open on another machine?
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </button>
-          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>Sim. São dez presets de fábrica e arquivos .opcoda para carregar e salvar. O estado do projeto também guarda o material, a região e a matriz de modulação.</p></div></div>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>Yes. There are ten factory presets and .opcoda files to load and save. Project state also stores the material, region and modulation matrix.</p></div></div>
         </div>
         <div class="ru-faq__item">
-          <button type="button" class="ru-faq__q" aria-expanded="false">o que ainda está em desenvolvimento?
+          <button type="button" class="ru-faq__q" aria-expanded="false">What is still in development?
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </button>
-          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>O formato CLAP e a visualização da nuvem de grãos ainda não existem. O mapeamento de CC em outros hosts e o desempenho em sessões longas ainda estão em teste. O Ableton Live 12 é o host verificado.</p></div></div>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>CLAP format and grain cloud display do not exist yet. CC mapping in other hosts and performance in long sessions are still under test. Ableton Live 12 is the verified host.</p></div></div>
         </div>
         <div class="ru-faq__item">
-          <button type="button" class="ru-faq__q" aria-expanded="false">como recebo a licença?
+          <button type="button" class="ru-faq__q" aria-expanded="false">How do I receive the license?
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </button>
-          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>O instalador, a chave e a documentação chegam por e-mail em até 24 horas após a confirmação. O reembolso integral pode ser pedido em até 14 dias.</p></div></div>
+          <div class="ru-faq__a-wrap"><div class="ru-faq__a"><p>The installer, key and documentation arrive by email within 24 hours after confirmation. A full refund can be requested within 14 days.</p></div></div>
         </div>
       </div>
     </div>
@@ -379,12 +379,12 @@
   <section class="oc-section">
     <div class="oc-wrap">
       <div class="oc-final">
-        <h2>acesso ao build 0.1.0.</h2>
+        <h2>Get build 0.1.0</h2>
         <div class="oc-final-side">
-          <p>Opcoda 0.1.0, VST3 e standalone para Windows x64. Licença por <span data-price>R$ 97</span>, com atualizações da série 0.x.</p>
+          <p>Opcoda 0.1.0, VST3 and standalone for Windows x64. License for <span data-price>R$ 97</span>, with 0.x series updates.</p>
           <div class="oc-actions">
-            <a class="oc-btn oc-btn-solid oc-buy-link" href="#licenca">comprar licença</a>
-            <a class="oc-btn" href="#vistas">rever as capturas</a>
+            <a class="oc-btn oc-btn-solid oc-buy-link" href="#licenca">buy license</a>
+            <a class="oc-btn" href="#vistas">review the screenshots</a>
           </div>
         </div>
       </div>
@@ -396,17 +396,17 @@
       <div class="oc-foot-grid">
         <div class="oc-foot-brand">
           <b>bloodworm trax</b>
-          <span>Opcoda é um instrumento do selo bloodworm trax, Vale do Paraíba, SP. O build 0.1.0 foi gerado a partir do repositório público do projeto.</span>
+          <span>Opcoda is an instrument from bloodworm trax, Vale do Paraiba, SP. Build 0.1.0 was generated from the public project repository.</span>
         </div>
-        <nav class="oc-foot-links" aria-label="links do rodapé">
-          <a href="index.html">acervo</a>
+        <nav class="oc-foot-links" aria-label="footer links">
+          <a href="index.html">catalog</a>
           <a href="index.html#/links">links</a>
-          <a href="sistema.html">sistema</a>
-          <a href="mailto:bloodwormtrax@gmail.com">contato</a>
+          <a href="sistema.html">system</a>
+          <a href="mailto:bloodwormtrax@gmail.com">contact</a>
         </nav>
         <div class="oc-foot-meta">
           Opcoda 0.1.0<br>
-          © 2026 bloodworm trax
+          Â© 2026 bloodworm trax
         </div>
       </div>
     </div>
@@ -415,16 +415,16 @@
 </main>
 
 <!-- progresso de leitura -->
-<div class="ru-progress" data-ru="progress" aria-label="progresso de leitura">
+<div class="ru-progress" data-ru="progress" aria-label="reading progress">
   <div class="ru-progress__list">
-    <button type="button" class="ru-progress__item" data-target="#som">som</button>
-    <button type="button" class="ru-progress__item" data-target="#vistas">vistas</button>
-    <button type="button" class="ru-progress__item" data-target="#controle">controle</button>
-    <button type="button" class="ru-progress__item" data-target="#especificacoes">especificações</button>
-    <button type="button" class="ru-progress__item" data-target="#licenca">licença</button>
-    <button type="button" class="ru-progress__item" data-target="#perguntas">perguntas</button>
+    <button type="button" class="ru-progress__item" data-target="#som">sound</button>
+    <button type="button" class="ru-progress__item" data-target="#vistas">views</button>
+    <button type="button" class="ru-progress__item" data-target="#controle">control</button>
+    <button type="button" class="ru-progress__item" data-target="#especificacoes">specifications</button>
+    <button type="button" class="ru-progress__item" data-target="#licenca">license</button>
+    <button type="button" class="ru-progress__item" data-target="#perguntas">faq</button>
   </div>
-  <button type="button" class="ru-progress__btn" aria-label="abrir índice de leitura" aria-expanded="false">
+  <button type="button" class="ru-progress__btn" aria-label="open reading index" aria-expanded="false">
     <svg viewBox="0 0 40 40" aria-hidden="true"><circle class="ru-progress__ring" cx="20" cy="20" r="17"></circle></svg>
     <span class="ru-progress__pct">0%</span>
   </button>
@@ -453,8 +453,8 @@
     try { localStorage.setItem('opcoda.moeda', cur); } catch (e) {}
     if (notify && window.BTXUI) {
       BTXUI.toast({
-        title: 'Preços em ' + item.nome,
-        description: 'Licença única de ' + item.preco + ', com impostos calculados na compra.',
+        title: 'Prices in ' + item.nome,
+        description: 'One-time license at ' + item.preco + ', with taxes at checkout.',
         type: 'info',
         duration: 2600
       });
@@ -473,3 +473,4 @@
 
 </body>
 </html>
+

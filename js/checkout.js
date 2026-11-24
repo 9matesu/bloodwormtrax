@@ -7,7 +7,7 @@ window.OPCODA_CHECKOUT = (function () {
 
   var moeda = {
     BRL: { preco: 'R$ 97',  nome: 'real',   link: 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=SUBSTITUIR_PREF_ID_BR' },
-    USD: { preco: 'US$ 59', nome: 'dolar',  link: 'https://buy.stripe.com/SUBSTITUIR_LINK_USD' },
+    USD: { preco: 'US$ 59', nome: 'dollar', link: 'https://buy.stripe.com/SUBSTITUIR_LINK_USD' },
     EUR: { preco: 'EUR 55', nome: 'euro',   link: 'https://buy.stripe.com/SUBSTITUIR_LINK_EUR' }
   };
 
