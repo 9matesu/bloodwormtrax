@@ -11,6 +11,19 @@ const BTX = {
     bio: "Selo independente do Vale do Paraíba, São Paulo. Desde 2023."
   },
 
+  software: [
+    {
+      id: "opcoda",
+      title: "Opcoda",
+      meta: "granular synthesizer · VST3 and standalone",
+      body: "An experimental plugin inspired by Ryoji Ikeda, databending and EPROM. It turns executable files into sound.",
+      links: [
+        { label: "open Opcoda", href: "opcoda.html", icon: "link", meta: "product page" },
+        { label: "source code", href: "https://github.com/9matesu/Opcoda", icon: "link", meta: "GitHub" }
+      ]
+    }
+  ],
+
   releases: [
     {
       id: "btx003-antologia",
@@ -45,19 +58,6 @@ const BTX = {
         { n: 8, title: "acqua", duration: "5:42" },
         { n: 9, title: "inverno", duration: "0:54" }
       ],
-      software: [
-    {
-      id: "opcoda",
-      title: "Opcoda",
-      meta: "granular synthesizer · VST3 and standalone",
-      body: "An experimental plugin inspired by Ryoji Ikeda, databending and EPROM. It turns executable files into sound.",
-      links: [
-        { label: "open Opcoda", href: "opcoda.html", icon: "link", meta: "product page" },
-        { label: "source code", href: "https://github.com/9matesu/Opcoda", icon: "link", meta: "GitHub" }
-      ]
-    }
-  ],
-
   links: [
         { label: "Bandcamp", href: "https://bloodwormtrax.bandcamp.com/album/btx003-antologia", icon: "bandcamp" },
         { label: "Spotify", href: "https://open.spotify.com/album/2JSAni7cci036ZP82h26AN", icon: "spotify" }
