@@ -1491,10 +1491,10 @@
       app.addEventListener('click', function (e) {
         var brand = e.target.closest('.brand');
         if (brand) {
-          setTimeout(function () {
-            var collapsed = document.body.classList.toggle('nav-collapsed');
-            brand.setAttribute('aria-expanded', String(!collapsed));
-          }, 0);
+          e.preventDefault();
+          var collapsed = document.body.classList.toggle('nav-collapsed');
+          brand.setAttribute('aria-expanded', String(!collapsed));
+          brand.setAttribute('aria-label', collapsed ? 'expand sidebar' : 'collapse sidebar');
         }
       });
     }
