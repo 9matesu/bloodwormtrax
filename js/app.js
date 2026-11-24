@@ -1102,12 +1102,7 @@
      settings
      --------------------------------------------------------- */
 
-  var themeButtons = $$('[data-theme-option]');
-  var grainRange = $('#grainRange');
-  var grainOut = $('#grainOut');
-  var settingsEl = $('#settings');
   var scrim = $('#scrim');
-  var settingsReturn = null;
 
   function persist() {
     store.set('btx.settings', { theme: settings.theme, grain: settings.grain, mode: settings.mode });
@@ -1122,40 +1117,16 @@
   }
 
   function syncSettings() {
-    themeButtons.forEach(function (b) {
-      b.setAttribute('aria-pressed', String(b.dataset.themeOption === settings.theme));
-    });
-    if (grainRange) grainRange.value = settings.grain;
-    if (grainOut) grainOut.textContent = settings.grain;
-    $$('[data-mode]').forEach(function (b) {
-      b.setAttribute('aria-pressed', String(b.dataset.mode === state.mode));
-    });
-  }
-
-  function openSettings() {
-    settingsReturn = document.activeElement;
-    settingsEl.classList.add('open');
-    settingsEl.setAttribute('aria-hidden', 'false');
-    scrim.hidden = false;
-    syncSettings();
-    var close = $('#settingsClose');
-    if (close) close.focus({ preventScroll: true });
-  }
-
-  function closeSettings() {
-    settingsEl.classList.remove('open');
-    settingsEl.setAttribute('aria-hidden', 'true');
-    if (!document.body.classList.contains('nav-open')) scrim.hidden = true;
-    var target = settingsReturn;
-    settingsReturn = null;
-    if (target && document.contains(target)) target.focus({ preventScroll: true });
+    var meta = document.querySelector('meta[name="theme-color"]');
+    var colors = { mono: '#0a0a0a', claro: '#f2f2ef', vinho: '#12090a' };
+    if (meta && colors[settings.theme]) meta.setAttribute('content', colors[settings.theme]);
   }
 
   function closeNav() {
     document.body.classList.remove('nav-open');
     var t = $('#navToggle');
     if (t) t.setAttribute('aria-expanded', 'false');
-    if (!settingsEl.classList.contains('open')) scrim.hidden = true;
+    scrim.hidden = true;
   }
 
   /* ---------------------------------------------------------
@@ -1300,8 +1271,6 @@
   function wireEvents() {
     var app = $('#app');
     var navToggle = $('#navToggle');
-    var settingsBtn = $('#settingsBtn');
-    var settingsClose = $('#settingsClose');
     var searchInput = $('#searchInput');
     var searchClear = $('#searchClear');
 
@@ -1352,50 +1321,14 @@
       });
     });
 
-    if (settingsBtn) settingsBtn.addEventListener('click', openSettings);
-    if (settingsClose) settingsClose.addEventListener('click', closeSettings);
 
-    themeButtons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        settings.theme = btn.dataset.themeOption;
-        applySettings();
-        syncSettings();
-        persist();
-      });
-    });
-
-    if (grainRange) {
-      grainRange.addEventListener('input', function () {
-        settings.grain = Number(grainRange.value);
-        applySettings();
-        if (grainOut) grainOut.textContent = settings.grain;
-        persist();
-      });
-    }
-
-    var resetBtn = $('#resetSettings');
-    if (resetBtn) {
-      resetBtn.addEventListener('click', function () {
-        settings = {
-          theme: 'mono',
-          grain: 3,
-          mode: window.matchMedia('(max-width: 900px)').matches ? 'index' : 'map'
-        };
-        state.mode = settings.mode;
-        applySettings();
-        syncSettings();
-        persist();
-        setHash([], state.mode);
-        render();
-      });
-    }
 
     if (navToggle) {
       navToggle.addEventListener('click', function () {
         var open = !document.body.classList.contains('nav-open');
         document.body.classList.toggle('nav-open', open);
         navToggle.setAttribute('aria-expanded', String(open));
-        scrim.hidden = !open && !settingsEl.classList.contains('open');
+        scrim.hidden = !open;
       });
     }
 
@@ -1407,14 +1340,7 @@
 
     if (scrim) {
       scrim.addEventListener('click', function () {
-        closeSettings();
         closeNav();
-      });
-    }
-
-    if (settingsEl) {
-      settingsEl.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeSettings();
       });
     }
 
@@ -1465,10 +1391,6 @@
           trapFocus(document.querySelector('.detail-overlay-panel'), e);
           return;
         }
-        if (settingsEl && settingsEl.classList.contains('open')) {
-          trapFocus(settingsEl, e);
-          return;
-        }
       }
 
       if (e.key !== 'Escape') return;
@@ -1476,14 +1398,23 @@
         closeOverlay(true);
         return;
       }
-      if (settingsEl && settingsEl.classList.contains('open')) {
-        closeSettings();
-        return;
-      }
       if (document.body.classList.contains('nav-open')) {
         closeNav();
       }
     });
+
+    var themeBtn = $('#themeBtn');
+    if (themeBtn) {
+      var themes = ['mono', 'claro', 'vinho'];
+      themeBtn.addEventListener('click', function () {
+        var i = themes.indexOf(settings.theme);
+        settings.theme = themes[(i + 1) % themes.length];
+        applySettings();
+        syncSettings();
+        persist();
+        themeBtn.setAttribute('aria-label', 'theme: ' + settings.theme);
+      });
+    }
 
     window.addEventListener('hashchange', applyHash);
 
