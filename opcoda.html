@@ -63,8 +63,8 @@
     <div class="oc-wrap oc-hero-top">
       <div class="oc-hero-copy">
         <h1 class="oc-title" id="titulo">Opcoda</h1>
-        <p class="oc-lede">Um sintetizador granular que toca arquivos executáveis. O motor de oito vozes transforma os bytes de um programa em drone, textura e ruído que não existe em banco de samples.</p>
-        <p class="oc-sub">Feito para trilha, som experimental e design de som. Roda como VST3 e standalone no Windows x64, com quatro vistas que mostram o arquivo enquanto ele soa.</p>
+        <p class="oc-lede">Plugin VST3 e standalone que usa executáveis como fonte sonora. Oito vozes granulares leem os bytes de um programa e os convertem em drone, textura e ruído.</p>
+        <p class="oc-sub">Para trilha, som experimental e design de som. Roda no Windows x64 em host VST3 de 64 bits, com quatro vistas do arquivo durante a reprodução.</p>
         <div class="oc-actions">
           <a class="oc-btn oc-btn-solid" href="#licenca">comprar licença</a>
           <a class="oc-btn" href="#vistas">ver as quatro vistas</a>
@@ -96,18 +96,18 @@
   <section class="oc-section" id="som" aria-labelledby="som-titulo">
     <div class="oc-wrap">
       <header class="oc-sec-head">
-        <h2 id="som-titulo">o arquivo vira som.</h2>
-        <p>Executáveis, DLLs e drivers entram como fonte. O Opcoda lê o cabeçalho, valida as seções e trata os bytes como amostras normalizadas.</p>
+        <h2 id="som-titulo">fonte de som</h2>
+        <p>O Opcoda carrega .exe, .dll, .bin e .sys com cabeçalho PE válido. Lê o cabeçalho, valida as seções e normaliza os bytes como amostras.</p>
       </header>
 
       <div class="oc-arch">
         <div class="oc-arch-col">
-          <p>Cada região do arquivo tem uma assinatura própria. Código comprimido soa denso, tabelas de importação soam esparsas, e o mesmo arquivo rende material diferente a cada trecho.</p>
-          <p>O motor granular de oito vozes corta esse material em grãos de 1 ms a 2 s, com densidade de 1 a 200 grãos por segundo e quatro janelas de grão.</p>
+          <p>O material muda conforme a região lida. Código comprimido gera textura densa; tabelas de importação, material esparso.</p>
+          <p>O motor tem oito vozes, grãos de 1 ms a 2 s, densidade de 1 a 200 grãos por segundo e quatro janelas: Hann, Gauss, Hamming e Blackman.</p>
         </div>
         <div class="oc-arch-col">
-          <p>Filtros, envelope, LFO e matriz de modulação trabalham sobre os grãos em tempo real. O arquivo continua legível nas quatro vistas enquanto toca.</p>
-          <p>O material carregado e a região de escuta ficam salvos no projeto. Na próxima sessão, o instrumento abre no mesmo ponto.</p>
+          <p>Filtros, envelope, LFO e matriz atuam sobre os grãos em tempo real. As quatro vistas mostram o arquivo durante a reprodução.</p>
+          <p>O material e a região de escuta ficam salvos no projeto. Na próxima sessão, o plugin abre no mesmo ponto.</p>
         </div>
       </div>
 
@@ -126,8 +126,8 @@
   <section class="oc-section" id="vistas" aria-labelledby="vistas-titulo">
     <div class="oc-wrap">
       <header class="oc-sec-head">
-        <h2 id="vistas-titulo">quatro leituras do mesmo arquivo.</h2>
-        <p>As vistas alternam com as teclas 1 a 4. Os painéis ENV e FILTER mostram o que se ouve, e as pegas escrevem os mesmos parâmetros dos knobs.</p>
+        <h2 id="vistas-titulo">quatro vistas</h2>
+        <p>Teclas 1 a 4 alternam as vistas. Os painéis ENV e FILTER mostram os parâmetros ajustados; as pegas escrevem os mesmos valores dos knobs.</p>
       </header>
 
       <div class="oc-gallery">
@@ -135,8 +135,8 @@
           <img src="assets/opcoda/real/opcoda-ui.webp" width="1180" height="760" alt="Interface do Opcoda com a vista de forma de onda, região de escuta marcada, janela do grão e knobs de size, density, position, spray, pitch, window, pan, stereo, level, p.rand e scan.">
           <figcaption>
             <span class="oc-shot-tag">vista 01 · onda</span>
-            <h3>o arquivo inteiro</h3>
-            <p>A forma de onda mostra o material carregado. A região de escuta é o retângulo, e a janela do grão acompanha o trecho em reprodução. O transporte e o medidor estéreo ficam no pé do display.</p>
+            <h3>forma de onda</h3>
+            <p>Mostra o material carregado. O retângulo marca a região de escuta e a janela acompanha o trecho em reprodução. Transporte e medidor estéreo ficam na parte inferior.</p>
           </figcaption>
         </figure>
 
@@ -145,7 +145,7 @@
           <figcaption>
             <span class="oc-shot-tag">vista 02 · bytes</span>
             <h3>bytes, ASCII e ASM</h3>
-            <p>Os bytes aparecem em hexadecimal, com a tradução ASCII e a instrução de 64 bits ao lado. Serve para achar a região que você quer ouvir e conferir o que está soando.</p>
+            <p>Bytes em hexadecimal, tradução ASCII e instrução de 64 bits decodificada. Permite localizar a região a ouvir e conferir o material.</p>
           </figcaption>
         </figure>
 
@@ -153,8 +153,8 @@
           <img src="assets/opcoda/real/opcoda-entropy.webp" width="1180" height="760" alt="Vista de entropia do Opcoda com a curva em janelas de 256 bytes e o eixo de 0 a 8 bits.">
           <figcaption>
             <span class="oc-shot-tag">vista 03 · entropia</span>
-            <h3>onde o arquivo é denso</h3>
-            <p>A curva de entropia mostra onde o arquivo é denso e onde é esparso. É a leitura que você roteia na matriz para modular o som a partir da estrutura do arquivo.</p>
+            <h3>entropia</h3>
+            <p>Curva de entropia em janelas de 256 bytes, de 0 a 8 bits. A curva pode ser roteada na matriz de modulação.</p>
           </figcaption>
         </figure>
 
@@ -162,8 +162,8 @@
           <img src="assets/opcoda/real/opcoda-env.webp" width="1180" height="760" alt="Painel ENV do Opcoda com o desenho do ADSR, o ponto vivo do envelope e os knobs à direita.">
           <figcaption>
             <span class="oc-shot-tag">painel · env</span>
-            <h3>envelope desenhado</h3>
-            <p>O envelope abre com o desenho do ADSR e o ponto vivo no sustain. Os cantos ajustam ataque, decay, sustain e release; as pegas de meio dobram as curvas.</p>
+            <h3>envelope ADSR</h3>
+            <p>Desenho do ADSR com ponto vivo no sustain. Cantos ajustam ataque, decay, sustain e release; pegas de meio dobram as curvas.</p>
           </figcaption>
         </figure>
 
@@ -172,7 +172,7 @@
           <figcaption>
             <span class="oc-shot-tag">painel · filter</span>
             <h3>dois filtros em série</h3>
-            <p>A resposta dos dois filtros aparece com o corte já modulado. Cada pega dá corte na horizontal e Q na vertical. Tipo, inclinação e drive ficam nas teclas ao lado dos knobs.</p>
+            <p>Resposta dos dois filtros biquad com corte modulado. Pega horizontal ajusta o corte; vertical, a ressonância. Tipo, inclinação e drive ficam nas teclas ao lado.</p>
           </figcaption>
         </figure>
       </div>
