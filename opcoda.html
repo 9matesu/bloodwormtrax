@@ -63,8 +63,8 @@
     <div class="oc-wrap oc-hero-top">
       <div class="oc-hero-copy">
         <h1 class="oc-title" id="titulo">Opcoda</h1>
-        <p class="oc-lede">A VST3 and standalone plugin that uses executables as a sound source. Eight granular voices read the bytes of a program and turn them into drone, texture and noise.</p>
-        <p class="oc-sub">For scoring, experimental sound and sound design. Runs on Windows x64 in a 64-bit VST3 host, with four views of the file during playback.</p>
+        <p class="oc-lede">VST3 and standalone plugin that turns executable files into sound. Eight granular voices.</p>
+        <p class="oc-sub">For scoring and sound design. Windows x64, 64-bit VST3 host.</p>
         <div class="oc-actions">
           <a class="oc-btn oc-btn-solid" href="#licenca">buy license</a>
           <a class="oc-btn" href="#vistas">see the four views</a>
@@ -81,12 +81,12 @@
           <div><dt>grain</dt><dd>1 ms to 2 s</dd></div>
           <div><dt>parameters</dt><dd>66 automatable</dd></div>
           <div><dt>presets</dt><dd>10 - .opcoda files</dd></div>
-          <div><dt>interface</dt><dd>1180 Ã— 760 fixed</dd></div>
+          <div><dt>interface</dt><dd>1180 x 760 fixed</dd></div>
         </dl>
 
         <div class="oc-price-block">
           <p class="oc-price"><span data-price>R$ 97</span> <small>early access</small></p>
-          <p class="oc-price-note">One-time payment. The license includes the VST3, the standalone and 0.x series updates, and activates two machines.</p>
+          <p class="oc-price-note">One-time payment. VST3, standalone, 0.x updates, two machines.</p>
           <a class="oc-btn oc-btn-solid oc-buy-link" href="#licenca">buy license</a>
         </div>
       </div>
@@ -97,29 +97,29 @@
     <div class="oc-wrap">
       <header class="oc-sec-head">
         <h2 id="som-titulo">Sound source</h2>
-        <p>Opcoda loads .exe, .dll, .bin and .sys files with a valid PE header. It reads the header, validates the sections and normalizes the bytes as samples.</p>
+        <p>Loads .exe, .dll, .bin and .sys with a valid PE header. Bytes become samples.</p>
       </header>
 
       <div class="oc-arch">
         <div class="oc-arch-col">
-          <p>The material changes with the region being read. Compressed code gives dense texture; import tables give sparse material.</p>
-          <p>The engine has eight voices, grains from 1 ms to 2 s, density from 1 to 200 grains per second, and four windows: Hann, Gauss, Hamming and Blackman.</p>
+          <p>Compressed code sounds dense. Import tables sound sparse.</p>
+          <p>Eight voices, grains from 1 ms to 2 s, up to 200 grains per second, four windows.</p>
         </div>
         <div class="oc-arch-col">
-          <p>Filters, envelope, LFO and matrix act on the grains in real time. The four views show the file during playback.</p>
-          <p>The material and the listening region are saved with the project. The plugin opens at the same point in the next session.</p>
+          <p>Filters, envelope, LFO and matrix work on the grains in real time.</p>
+          <p>The project saves the material and the listening region.</p>
         </div>
       </div>
 
       <p class="oc-chain">
-        <span>PE executable</span><em aria-hidden="true">â†’</em>
-        <span>header and sections</span><em aria-hidden="true">â†’</em>
-        <span>bytes to samples</span><em aria-hidden="true">â†’</em>
-        <span>granular engine</span><em aria-hidden="true">â†’</em>
-        <span>filters and envelope</span><em aria-hidden="true">â†’</em>
+        <span>PE executable</span><em aria-hidden="true">&#8594;</em>
+        <span>header and sections</span><em aria-hidden="true">&#8594;</em>
+        <span>bytes to samples</span><em aria-hidden="true">&#8594;</em>
+        <span>granular engine</span><em aria-hidden="true">&#8594;</em>
+        <span>filters and envelope</span><em aria-hidden="true">&#8594;</em>
         <span>stereo output</span>
       </p>
-      <p class="oc-chain-note">The LFO and the matrix modulate the engine. The envelope controls the gate of each voice.</p>
+      <p class="oc-chain-note">LFO and matrix modulate. The envelope gates each voice.</p>
     </div>
   </section>
 
@@ -127,7 +127,7 @@
     <div class="oc-wrap">
       <header class="oc-sec-head">
         <h2 id="vistas-titulo">Four views</h2>
-        <p>Keys 1 to 4 switch views. The ENV and FILTER panels show the current parameters; the handles write the same values as the knobs.</p>
+        <p>Keys 1 to 4 switch views. Handles write the same values as the knobs.</p>
       </header>
 
       <div class="oc-gallery">
@@ -136,7 +136,7 @@
           <figcaption>
             <span class="oc-shot-tag">view 01 - wave</span>
             <h3>Waveform</h3>
-            <p>Shows the loaded material. The rectangle marks the listening region and the window follows the playing excerpt. Transport and stereo meter sit at the bottom.</p>
+            <p>The rectangle marks the listening region. The window follows playback.</p>
           </figcaption>
         </figure>
 
@@ -145,7 +145,7 @@
           <figcaption>
             <span class="oc-shot-tag">view 02 - bytes</span>
             <h3>Bytes, ASCII and ASM</h3>
-            <p>Bytes in hexadecimal, ASCII translation and the decoded 64-bit instruction. Use it to find the region to hear and check the material.</p>
+            <p>Hexadecimal bytes, ASCII and the decoded 64-bit instruction.</p>
           </figcaption>
         </figure>
 
@@ -154,7 +154,7 @@
           <figcaption>
             <span class="oc-shot-tag">view 03 - entropy</span>
             <h3>Entropy</h3>
-            <p>Entropy is an image of the file. Shannon entropy runs from 0 to 8 bits per byte and plots the density of each byte column. Use the curve to pick a region to hear.</p>
+            <p>An image of the file. Density runs from 0 to 8 bits per byte. Use it to pick a region.</p>
           </figcaption>
         </figure>
 
@@ -163,7 +163,7 @@
           <figcaption>
             <span class="oc-shot-tag">panel - env</span>
             <h3>ADSR envelope</h3>
-            <p>ADSR drawing with a live point on sustain. Corners set attack, decay, sustain and release; mid handles bend the curves.</p>
+            <p>ADSR with a live point on sustain. Corners set the four stages.</p>
           </figcaption>
         </figure>
 
@@ -172,7 +172,7 @@
           <figcaption>
             <span class="oc-shot-tag">panel - filter</span>
             <h3>Two filters in series</h3>
-            <p>Response of the two biquad filters with modulated cutoff. The horizontal handle sets cutoff, the vertical one sets resonance. Type, slope and drive sit on the keys beside the knobs.</p>
+            <p>Two biquad filters in series. Horizontal handle sets cutoff, vertical sets resonance.</p>
           </figcaption>
         </figure>
       </div>
@@ -183,17 +183,17 @@
     <div class="oc-wrap">
       <header class="oc-sec-head">
         <h2 id="controle-titulo">Control</h2>
-        <p>66 automatable parameters, all exposed to the host. The standalone repeats the same controls and adds a virtual keyboard and MIDI.</p>
+        <p>66 automatable parameters. The standalone adds a keyboard and MIDI.</p>
       </header>
 
       <div class="oc-groups">
         <article class="oc-group">
           <h3>Engine</h3>
           <ul class="oc-lines">
-            <li>Eight grain voices, each with size, density, position, spray, pitch and pan.</li>
+            <li>Eight grain voices with size, density, position, spray, pitch and pan.</li>
             <li>Grains from 1 ms to 2 s and density from 1 to 200 grains per second.</li>
             <li>Four grain windows: Hann, Gauss, Hamming and Blackman.</li>
-            <li>Scan moves through the file from start to end as the material plays.</li>
+            <li>Scan moves through the file.</li>
             <li>Stereo reading with pan and width per grain.</li>
           </ul>
         </article>
@@ -212,11 +212,11 @@
         <article class="oc-group">
           <h3>File</h3>
           <ul class="oc-lines">
-            <li>Four views: waveform, bytes with ASCII and ASM, entropy and matrix.</li>
-            <li>The byte view shows the file in hexadecimal with the decoded instruction beside it.</li>
+            <li>Four views: wave, bytes, entropy, matrix.</li>
+            <li>Bytes in hexadecimal with the decoded instruction.</li>
             <li>Entropy is an image of the file, for picking a region to hear.</li>
-            <li>Ten factory presets and .opcoda files to save material, region and matrix.</li>
-            <li>Loads .exe, .dll, .bin and .sys files with a valid PE header.</li>
+            <li>Ten factory presets. .opcoda files save the state.</li>
+            <li>Loads .exe, .dll, .bin and .sys with a valid PE header.</li>
           </ul>
         </article>
       </div>
@@ -227,7 +227,7 @@
     <div class="oc-wrap">
       <header class="oc-sec-head">
         <h2 id="especificacoes-titulo">Specifications</h2>
-        <p>The plugin ships as VST3 and standalone. The host sets the sample rate. The source is mono with stereo output and pan per grain.</p>
+        <p>VST3 and standalone. Sample rate comes from the host. Mono source, stereo output.</p>
       </header>
 
       <div class="oc-specs">
@@ -240,7 +240,7 @@
             <div><dt>sample rate</dt><dd>set by the host</dd></div>
             <div><dt>source</dt><dd>mono</dd></div>
             <div><dt>output</dt><dd>stereo with pan per grain</dd></div>
-            <div><dt>interface</dt><dd>1180 Ã— 760 fixed</dd></div>
+            <div><dt>interface</dt><dd>1180 x 760 fixed</dd></div>
           </dl>
         </div>
         <div class="oc-spec-col">
@@ -275,7 +275,7 @@
           <div><b>system</b><span>Windows x64</span></div>
           <div><b>host</b><span>64-bit VST3</span></div>
           <div><b>verified in</b><span>Ableton Live 12</span></div>
-          <div><b>screen</b><span>1180 Ã— 760 or larger</span></div>
+          <div><b>screen</b><span>1180 x 760 or larger</span></div>
         </div>
       </div>
     </div>
@@ -286,7 +286,7 @@
       <div class="oc-buy">
         <div class="oc-buy-copy">
           <h2 id="licenca-titulo">License</h2>
-          <p>Opcoda 0.1.0 is in early access. The purchase unlocks the current build, the VST3 and the standalone, plus 0.x series updates. The key arrives by email after payment and activates two machines.</p>
+          <p>Opcoda 0.1.0, early access. The license covers the current build, 0.x updates and two machines. The key arrives by email.</p>
 
           <ul class="oc-includes">
             <li>VST3 and standalone</li>
@@ -301,7 +301,7 @@
 
         <div class="oc-buy-card">
           <p class="oc-price"><span data-price>R$ 97</span> <small>+ taxes</small></p>
-          <p class="oc-price-note">One-time payment. The evaluation build does not expire, but it does not save presets until activation.</p>
+          <p class="oc-price-note">One-time payment. The evaluation build does not save presets.</p>
           <a class="oc-btn oc-btn-solid oc-buy-link" href="#licenca">buy license</a>
           <a class="oc-btn" href="mailto:bloodwormtrax@gmail.com?subject=Opcoda%20evaluation">request evaluation build</a>
 
@@ -381,7 +381,7 @@
       <div class="oc-final">
         <h2>Get build 0.1.0</h2>
         <div class="oc-final-side">
-          <p>Opcoda 0.1.0, VST3 and standalone for Windows x64. License for <span data-price>R$ 97</span>, with 0.x series updates.</p>
+          <p>Opcoda 0.1.0. VST3 and standalone for Windows x64. <span data-price>R$ 97</span>, with 0.x updates.</p>
           <div class="oc-actions">
             <a class="oc-btn oc-btn-solid oc-buy-link" href="#licenca">buy license</a>
             <a class="oc-btn" href="#vistas">review the screenshots</a>
