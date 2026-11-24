@@ -2955,17 +2955,6 @@ select,
 }
 
 
-/* sidebar collapse: so a logo permanece */
-.sidebar { transition: width .25s var(--ease), padding .25s var(--ease), transform .4s var(--ease); }
-.main { transition: margin-left .25s var(--ease); }
-.nav-collapsed .sidebar .side-nav,
-.nav-collapsed .sidebar .side-foot { display: none; }
-@media (min-width: 861px) {
-  .nav-collapsed .sidebar { width: 64px; padding: 22px 12px; }
-  .nav-collapsed .sidebar .brand-word { display: none; }
-  .nav-collapsed .main { margin-left: 64px; }
-}
-
 /* layout aberto: menos caixas, mais espaco */
 .sidebar { background: transparent; box-shadow: none; border-right: 0; }
 .side-nav { border-top: 0; margin-top: 22px; gap: 4px; }
@@ -2984,3 +2973,57 @@ select,
 .site-foot nav a { background: transparent; border: 0; box-shadow: none; }
 .settings, .detail-overlay-panel { box-shadow: none; border: 1px solid var(--line); }
 .brand-mark { width: 24px; }
+
+/* header em grid */
+.topbar {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: center;
+  justify-items: center;
+  gap: 20px;
+  padding: 10px 22px;
+}
+.topbar .nav-toggle { justify-self: start; }
+.topbar .search-field { justify-self: center; width: min(100%, 460px); max-width: 460px; }
+.topbar .view-switch { justify-self: end; }
+
+/* logo: na sidebar quando aberta, no header quando colapsada */
+.brand { justify-self: center; }
+.nav-collapsed .sidebar { width: 0; padding: 0; overflow: visible; border-right: 0; }
+.nav-collapsed .sidebar .side-nav,
+.nav-collapsed .sidebar .side-foot { display: none; }
+.nav-collapsed .sidebar .brand {
+  position: fixed;
+  top: 8px;
+  left: 22px;
+  z-index: 50;
+  padding: 4px;
+}
+.nav-collapsed .sidebar .brand-word { display: none; }
+.nav-collapsed .sidebar .brand-mark { width: 26px; }
+.nav-collapsed .main { margin-left: 0; }
+
+/* texto solto, sem caixas */
+.node, .row-item, .col-head, .site-foot nav a,
+.segmented, .segmented button, .search-field,
+.icon-btn, .brand, .side-nav a {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+}
+.node { padding: 9px 2px; }
+.row-item { padding: 8px 2px; }
+.col-head { padding: 10px 2px; border-bottom: 0; }
+.site-foot nav a { width: auto; height: auto; padding: 2px; }
+.segmented { gap: 16px; }
+.segmented button { padding: 4px 2px; }
+.search-field { height: auto; padding: 4px 0; gap: 8px; }
+.search-input, #searchInput {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 4px 0;
+}
+.brand:hover, .side-nav a:hover, .row-item:hover,
+.site-foot nav a:hover { background: transparent; }
