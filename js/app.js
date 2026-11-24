@@ -490,12 +490,7 @@
   }
 
   function releaseDetail(r) {
-    var rows = [
-      { label: 'catalogue', value: r.cat },
-      { label: 'type', value: r.type + ' · ' + r.format },
-      { label: 'release', value: fmtDate(r.date) },
-      { label: 'artists', value: r.artist }
-    ].concat(r.credits || []);
+    var rows = (r.credits || []).slice();
 
     var tracks = r.tracks.map(function (t) {
       return '<li>' +
