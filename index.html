@@ -26,15 +26,11 @@
 <div class="app" id="app">
 
   <aside class="sidebar" id="sidebar" aria-label="bloodworm trax">
-    <a class="brand" href="#/" aria-label="bloodworm trax, home">
+    <a class="brand" href="#/" aria-label="bloodworm trax, home" aria-expanded="true" role="button">
       <img class="brand-mark" src="assets/mark.png" alt="" width="145" height="133">
       <span class="brand-word">bloodworm trax</span>
     </a>
 
-    <button type="button" class="side-collapse" id="sideCollapse" aria-label="collapse sidebar" aria-expanded="true">
-      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg>
-      <span>collapse</span>
-    </button>
 
     <nav class="side-nav" aria-label="catalog sections">
       <a href="#/catalogo" data-key="catalogo">
@@ -97,40 +93,7 @@
         <button type="button" class="search-clear" id="searchClear" aria-label="clear search" hidden>×</button>
       </div>
 
-      <div class="topbar-selects">
-        <label class="select-wrap">
-          <span class="sr-only">filter</span>
-          <select id="filterSelect">
-            <option value="all">all</option>
-            <option value="releases">releases</option>
-            <option value="artists">artists</option>
-            <option value="pages">pages</option>
-            <option value="links">links</option>
-          </select>
-        </label>
-        <label class="select-wrap">
-          <span class="sr-only">sort</span>
-          <select id="sortSelect">
-            <option value="natural">natural order</option>
-            <option value="az">a–z</option>
-            <option value="recent">recent</option>
-          </select>
-        </label>
-      </div>
 
-      <div class="ru-bell topbar-bell" data-ru="bell">
-        <button type="button" class="ru-bell__btn" aria-label="catalog notifications" aria-expanded="false">
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M10 2.6a5 5 0 00-5 5v2.6L3.7 13h12.6L15 10.2V7.6a5 5 0 00-5-5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-            <path class="ru-bell__clap" d="M8 15.4a2 2 0 004 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-          </svg>
-          <span class="ru-bell__badge">2</span>
-        </button>
-        <div class="ru-bell__panel">
-          <div class="ru-bell__head"><b>notifications</b><button type="button" class="ru-bell__clear">mark read</button></div>
-          <div class="ru-bell__note"><span class="ru-bell__dot" style="background:var(--accent)"></span><p>bTx003 Antologia is now in the catalog.<br><small>now</small></p></div>
-        </div>
-      </div>
 
       <button type="button" class="icon-btn settings-btn" id="settingsBtn" aria-haspopup="dialog" aria-controls="settings" aria-label="settings">
         <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="2.7"/><path d="M10 2.4v2M10 15.6v2M17.6 10h-2M4.4 10h-2M15.4 4.6l-1.4 1.4M6 14l-1.4 1.4M15.4 15.4 14 14M6 6 4.6 4.6"/></svg>
@@ -167,7 +130,7 @@
     <footer class="site-foot">
       <nav class="foot-links" aria-label="label links">
         <a href="https://bloodwormtrax.bandcamp.com" target="_blank" rel="noopener" aria-label="bandcamp" title="bandcamp">
-          <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5.6 6 2.4h8L10 13H2z"/><circle cx="10.3" cy="8.1" r="2.1"/></svg>
+          <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5.5 5.6 2.5h8.2L10.2 13H2z"/><path d="M9.4 5.9h2.1l-.8 3.6H8.6z" fill="currentColor" stroke="none"/></svg>
         </a>
         <a href="https://instagram.com/bloodwormtrax" target="_blank" rel="noopener" aria-label="instagram" title="instagram">
           <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><rect x="2.4" y="2.4" width="11.2" height="11.2" rx="3.1"/><circle cx="8" cy="8" r="2.5"/><circle cx="11.5" cy="4.5" r=".75" fill="currentColor" stroke="none"/></svg>

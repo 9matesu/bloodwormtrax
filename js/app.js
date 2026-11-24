@@ -1299,22 +1299,11 @@
 
   function wireEvents() {
     var app = $('#app');
-    var sideCollapse = $('#sideCollapse');
-    if (sideCollapse) {
-      sideCollapse.addEventListener('click', function () {
-        var collapsed = document.body.classList.toggle('nav-collapsed');
-        sideCollapse.setAttribute('aria-expanded', String(!collapsed));
-        sideCollapse.setAttribute('aria-label', collapsed ? 'expand sidebar' : 'collapse sidebar');
-      });
-    }
-
     var navToggle = $('#navToggle');
     var settingsBtn = $('#settingsBtn');
     var settingsClose = $('#settingsClose');
     var searchInput = $('#searchInput');
     var searchClear = $('#searchClear');
-    var filterSelect = $('#filterSelect');
-    var sortSelect = $('#sortSelect');
 
     document.addEventListener('click', function (e) {
       var pop = e.target.closest('[data-pop]');
@@ -1456,22 +1445,6 @@
       });
     }
 
-    if (filterSelect) {
-      filterSelect.addEventListener('change', function () {
-        state.filter = filterSelect.value;
-        state.path = [];
-        setHash([], state.mode);
-        render();
-      });
-    }
-
-    if (sortSelect) {
-      sortSelect.addEventListener('change', function () {
-        state.sort = sortSelect.value;
-        render();
-      });
-    }
-
     if (overlayEl) {
       overlayEl.addEventListener('click', function (e) {
         if (e.target.closest('[data-detail-close]')) {
@@ -1519,8 +1492,8 @@
         var brand = e.target.closest('.brand');
         if (brand) {
           setTimeout(function () {
-            state.path = [];
-            render();
+            var collapsed = document.body.classList.toggle('nav-collapsed');
+            brand.setAttribute('aria-expanded', String(!collapsed));
           }, 0);
         }
       });
