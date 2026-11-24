@@ -45,7 +45,7 @@
     <button type="button" data-cur="EUR" aria-pressed="false">€</button>
   </div>
 
-  <a class="oc-nav-buy" href="#licenca">comprar · <span data-price>R$ 149</span></a>
+  <a class="oc-nav-buy" href="#licenca">comprar · <span data-price>R$ 97</span></a>
 </header>
 
 <main id="conteudo">
@@ -85,9 +85,9 @@
         </dl>
 
         <div class="oc-price-block">
-          <p class="oc-price"><span data-price>R$ 149</span> <small>acesso antecipado</small></p>
+          <p class="oc-price"><span data-price>R$ 97</span> <small>acesso antecipado</small></p>
           <p class="oc-price-note">Pagamento único. A licença inclui o VST3, o standalone e as atualizações da série 0.x, e ativa duas máquinas.</p>
-          <a class="oc-btn oc-btn-solid" href="mailto:bloodwormtrax@gmail.com?subject=Opcoda%20licen%C3%A7a">comprar licença</a>
+          <a class="oc-btn oc-btn-solid oc-buy-link" href="#licenca">comprar licença</a>
         </div>
       </div>
     </div>
@@ -300,9 +300,9 @@
         </div>
 
         <div class="oc-buy-card">
-          <p class="oc-price"><span data-price>R$ 149</span> <small>+ impostos</small></p>
+          <p class="oc-price"><span data-price>R$ 97</span> <small>+ impostos</small></p>
           <p class="oc-price-note">Pagamento único. O build de avaliação não expira, mas não salva presets até a ativação.</p>
-          <a class="oc-btn oc-btn-solid" href="mailto:bloodwormtrax@gmail.com?subject=Opcoda%20licen%C3%A7a">comprar licença</a>
+          <a class="oc-btn oc-btn-solid oc-buy-link" href="#licenca">comprar licença</a>
           <a class="oc-btn" href="mailto:bloodwormtrax@gmail.com?subject=Opcoda%20avalia%C3%A7%C3%A3o">pedir build de avaliação</a>
 
           <div class="oc-license">
@@ -381,9 +381,9 @@
       <div class="oc-final">
         <h2>acesso ao build 0.1.0.</h2>
         <div class="oc-final-side">
-          <p>Opcoda 0.1.0, VST3 e standalone para Windows x64. Licença por <span data-price>R$ 149</span>, com atualizações da série 0.x.</p>
+          <p>Opcoda 0.1.0, VST3 e standalone para Windows x64. Licença por <span data-price>R$ 97</span>, com atualizações da série 0.x.</p>
           <div class="oc-actions">
-            <a class="oc-btn oc-btn-solid" href="mailto:bloodwormtrax@gmail.com?subject=Opcoda%20licen%C3%A7a">comprar licença</a>
+            <a class="oc-btn oc-btn-solid oc-buy-link" href="#licenca">comprar licença</a>
             <a class="oc-btn" href="#vistas">rever as capturas</a>
           </div>
         </div>
@@ -431,25 +431,30 @@
 </div>
 
 <script src="js/ui-core.js"></script>
+<script src="js/checkout.js"></script>
 <script>
 (function () {
   'use strict';
-  var prices = { BRL: 'R$ 149', USD: '$ 27', EUR: '€ 25' };
-  var names = { BRL: 'real', USD: 'dólar', EUR: 'euro' };
+  var cfg = window.OPCODA_CHECKOUT;
+  if (!cfg) return;
+
   var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-cur]'));
   var fields = Array.prototype.slice.call(document.querySelectorAll('[data-price]'));
+  var buys = Array.prototype.slice.call(document.querySelectorAll('.oc-buy-link'));
 
   function setCurrency(cur, notify) {
-    if (!prices[cur]) cur = 'BRL';
-    fields.forEach(function (el) { el.textContent = prices[cur]; });
+    if (!cfg.moeda[cur]) cur = 'BRL';
+    var item = cfg.moeda[cur];
+    fields.forEach(function (el) { el.textContent = item.preco; });
+    buys.forEach(function (a) { a.href = item.link; });
     buttons.forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.getAttribute('data-cur') === cur));
     });
     try { localStorage.setItem('opcoda.moeda', cur); } catch (e) {}
     if (notify && window.BTXUI) {
       BTXUI.toast({
-        title: 'Preços em ' + names[cur],
-        description: 'Licença única de ' + prices[cur] + ', com impostos calculados na compra.',
+        title: 'Preços em ' + item.nome,
+        description: 'Licença única de ' + item.preco + ', com impostos calculados na compra.',
         type: 'info',
         duration: 2600
       });
