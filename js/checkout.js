@@ -1,7 +1,4 @@
-/* Opcoda — configuracao de venda direta.
- * Edite somente este arquivo para trocar precos ou links de pagamento.
- * Os links abaixo sao os unicos pontos de venda do site.
- */
+/* Opcoda - venda direta. Edite somente este arquivo para precos e links. */
 window.OPCODA_CHECKOUT = (function () {
   'use strict';
 
@@ -11,19 +8,30 @@ window.OPCODA_CHECKOUT = (function () {
     EUR: { preco: 'EUR 55', nome: 'euro',   link: 'https://buy.stripe.com/SUBSTITUIR_LINK_EUR' }
   };
 
-  var avaliacao = 'mailto:bloodwormtrax@gmail.com?subject=Opcoda%20avalia%C3%A7%C3%A3o';
-  var contato = 'mailto:bloodwormtrax@gmail.com';
+  function detectar() {
+    var locale = 'en-US';
+    try { locale = Intl.DateTimeFormat().resolvedOptions().locale || 'en-US'; } catch (e) {}
+    var tag = locale.toLowerCase();
+    if (tag.indexOf('pt-br') === 0 || tag.indexOf('pt') === 0) return 'BRL';
+    var paisesEUR = ['at','be','cy','ee','fi','fr','de','gr','ie','it','lv','lt','lu','mt','nl','pt','sk','si','es','hr'];
+    var pais = tag.split('-')[1];
+    if (pais && paisesEUR.indexOf(pais) >= 0) return 'EUR';
+    return 'USD';
+  }
+
+  function atual() {
+    try { return localStorage.getItem('opcoda.moeda') || detectar(); }
+    catch (e) { return detectar(); }
+  }
 
   function linkDaMoeda() {
-    var atual = 'BRL';
-    try { atual = localStorage.getItem('opcoda.moeda') || 'BRL'; } catch (e) {}
-    return (moeda[atual] || moeda.BRL).link;
+    return (moeda[atual()] || moeda.BRL).link;
   }
 
   return {
     moeda: moeda,
-    avaliacao: avaliacao,
-    contato: contato,
+    atual: atual,
+    detectar: detectar,
     linkDaMoeda: linkDaMoeda
   };
 })();
