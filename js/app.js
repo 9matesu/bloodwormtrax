@@ -1306,6 +1306,15 @@
 
   function wireEvents() {
     var app = $('#app');
+    var sideCollapse = $('#sideCollapse');
+    if (sideCollapse) {
+      sideCollapse.addEventListener('click', function () {
+        var collapsed = document.body.classList.toggle('nav-collapsed');
+        sideCollapse.setAttribute('aria-expanded', String(!collapsed));
+        sideCollapse.setAttribute('aria-label', collapsed ? 'expand sidebar' : 'collapse sidebar');
+      });
+    }
+
     var navToggle = $('#navToggle');
     var settingsBtn = $('#settingsBtn');
     var settingsClose = $('#settingsClose');
